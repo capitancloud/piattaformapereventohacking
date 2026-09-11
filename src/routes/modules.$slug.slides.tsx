@@ -290,6 +290,18 @@ function SlideCard({ slide, index, total }: { slide: Slide; index: number; total
           </ul>
         )}
 
+        {slide.note && (
+          <div
+            className={cn(
+              "mt-8 flex items-start gap-3 rounded-xl border p-4 md:p-5",
+              accentBorder,
+            )}
+          >
+            <Sparkles className={cn("mt-0.5 h-5 w-5 shrink-0", accentColor)} />
+            <p className="text-base leading-relaxed text-ivory/90 md:text-lg">{slide.note}</p>
+          </div>
+        )}
+
         {slide.code && (
           <pre className="mt-8 max-h-64 min-w-0 overflow-auto whitespace-pre-wrap break-all rounded-lg border border-border bg-background/70 p-4 font-mono text-sm text-ivory">
             {slide.code}

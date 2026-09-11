@@ -30,7 +30,7 @@ export default function Task01Observe({ markComplete, isComplete }: TaskContext)
             const next = (idx + 1) % MY_ORDERS.length;
             setIdx(next);
             const s = new Set(seen);
-            s.add(MY_ORDERS[next]);
+            s.add(MY_ORDERS[next]!);
             setSeen(s);
             if (s.size >= 2) markComplete();
           }}

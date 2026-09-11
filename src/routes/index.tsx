@@ -213,8 +213,12 @@ function Home() {
                     </div>
                   )}
                   {available && (
-                    <div className="flex items-center gap-1.5 pt-3 text-sm text-gold transition group-hover:gap-3">
-                      Inizia il modulo <ArrowUpRight className="h-4 w-4" />
+                    <div className="flex items-center justify-between gap-3 pt-3">
+                      <span className="flex items-center gap-1.5 text-sm text-gold transition group-hover:gap-3">
+                        {done > 0 ? "Continua il modulo" : "Inizia il modulo"}
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                      {resetButton}
                     </div>
                   )}
                 </div>

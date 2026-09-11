@@ -68,7 +68,7 @@ function TaskPage() {
             {hintOpen ? "Nascondi suggerimento" : "Mostra suggerimento"}
           </button>
           {hintOpen && (
-            <p className="animate-in fade-in mt-2 rounded-md border border-border bg-surface p-3 text-sm text-muted-foreground">
+            <p className="animate-in fade-in mt-2 break-words rounded-md border border-border bg-surface p-3 text-sm text-muted-foreground">
               {task.hint}
             </p>
           )}

@@ -24,6 +24,7 @@ export interface Slide {
   body?: string;
   bullets?: string[];
   code?: string;
+  note?: string; // short highlighted callout with an extra explanation
   accent?: "gold" | "danger" | "success" | "neutral";
   icon?: string; // lucide icon name
 }

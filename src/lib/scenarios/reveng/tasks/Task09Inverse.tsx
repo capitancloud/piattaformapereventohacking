@@ -107,6 +107,7 @@ export default function Task09Inverse({ markComplete, isComplete }: TaskContext)
                 )}
                 <span
                   className={cn(
+                    "min-w-0 break-words",
                     checked && r.ok
                       ? "text-ivory"
                       : checked

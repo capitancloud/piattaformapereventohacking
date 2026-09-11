@@ -1,4 +1,5 @@
 import type { Scenario } from "../types";
+import { idorSlides } from "./slides";
 import Task01Observe from "./tasks/Task01Observe";
 import Task02ChangeId from "./tasks/Task02ChangeId";
 import Task03Invoice from "./tasks/Task03Invoice";

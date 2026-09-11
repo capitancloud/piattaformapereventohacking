@@ -10,33 +10,66 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ModulesSlugRouteImport } from './routes/modules.$slug'
+import { Route as ModulesSlugIndexRouteImport } from './routes/modules.$slug.index'
+import { Route as ModulesSlugTaskIdRouteImport } from './routes/modules.$slug.$taskId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModulesSlugRoute = ModulesSlugRouteImport.update({
+  id: '/modules/$slug',
+  path: '/modules/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulesSlugIndexRoute = ModulesSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ModulesSlugRoute,
+} as any)
+const ModulesSlugTaskIdRoute = ModulesSlugTaskIdRouteImport.update({
+  id: '/$taskId',
+  path: '/$taskId',
+  getParentRoute: () => ModulesSlugRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/modules/$slug': typeof ModulesSlugRouteWithChildren
+  '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
+  '/modules/$slug/': typeof ModulesSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
+  '/modules/$slug': typeof ModulesSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/modules/$slug': typeof ModulesSlugRouteWithChildren
+  '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
+  '/modules/$slug/': typeof ModulesSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/modules/$slug' | '/modules/$slug/$taskId' | '/modules/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/modules/$slug/$taskId' | '/modules/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/modules/$slug'
+    | '/modules/$slug/$taskId'
+    | '/modules/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ModulesSlugRoute: typeof ModulesSlugRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +81,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modules/$slug': {
+      id: '/modules/$slug'
+      path: '/modules/$slug'
+      fullPath: '/modules/$slug'
+      preLoaderRoute: typeof ModulesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules/$slug/': {
+      id: '/modules/$slug/'
+      path: '/'
+      fullPath: '/modules/$slug/'
+      preLoaderRoute: typeof ModulesSlugIndexRouteImport
+      parentRoute: typeof ModulesSlugRoute
+    }
+    '/modules/$slug/$taskId': {
+      id: '/modules/$slug/$taskId'
+      path: '/$taskId'
+      fullPath: '/modules/$slug/$taskId'
+      preLoaderRoute: typeof ModulesSlugTaskIdRouteImport
+      parentRoute: typeof ModulesSlugRoute
+    }
   }
 }
 
+interface ModulesSlugRouteChildren {
+  ModulesSlugTaskIdRoute: typeof ModulesSlugTaskIdRoute
+  ModulesSlugIndexRoute: typeof ModulesSlugIndexRoute
+}
+
+const ModulesSlugRouteChildren: ModulesSlugRouteChildren = {
+  ModulesSlugTaskIdRoute: ModulesSlugTaskIdRoute,
+  ModulesSlugIndexRoute: ModulesSlugIndexRoute,
+}
+
+const ModulesSlugRouteWithChildren = ModulesSlugRoute._addFileChildren(
+  ModulesSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ModulesSlugRoute: ModulesSlugRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

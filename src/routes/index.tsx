@@ -43,7 +43,7 @@ function Home() {
           </span>
         </Link>
         <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#evento" className="transition hover:text-ivory">L'evento</a>
+          <a href="#evento" className="transition hover:text-ivory">La giornata</a>
           <a href="#moduli" className="transition hover:text-ivory">Moduli</a>
           <a href="#come-funziona" className="transition hover:text-ivory">Come funziona</a>
         </nav>

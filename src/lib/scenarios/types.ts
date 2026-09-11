@@ -12,6 +12,7 @@ export interface Task {
   title: string;
   goal: string;
   brief: string;
+  details?: string;
   hint: string;
   explanation: string;
   Simulation: ComponentType<TaskContext>;

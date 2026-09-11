@@ -64,10 +64,10 @@ function Home() {
             <span className="italic text-gold">L'attacco lo fai qui</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Black Mirror Lab è il laboratorio pratico della giornata di formazione Black Mirror:
-            una giornata in aula con 20 studenti, condita da me e da un collega. Ogni volta che
-            presentiamo una minaccia, la replichi tu qui: manipoli davvero URL, form e API in
-            simulazioni fedeli e sicure. Nessun setup, nessun rischio, nessuna macchina da bucare.
+            Black Mirror Lab è il laboratorio pratico della giornata di formazione Black Mirror.
+            Ogni volta che presentiamo una minaccia in aula, la replichi tu qui: manipoli davvero
+            URL, form e API in simulazioni fedeli e sicure. Nessun setup, nessun rischio, nessuna
+            macchina da bucare.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
@@ -116,7 +116,7 @@ function Home() {
           </div>
           <div className="grid gap-3">
             {[
-              { k: "01", t: "In aula", d: "Un caso reale presentato alla lavagna da noi due." },
+              { k: "01", t: "In aula", d: "Un caso reale presentato alla lavagna durante la lezione." },
               { k: "02", t: "Nel Lab", d: "Tu apri lo scenario collegato e provi l'attacco." },
               { k: "03", t: "Dopo la giornata", d: "Il tuo progresso resta salvato: continui quando vuoi." },
             ].map((x) => (

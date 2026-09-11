@@ -18,7 +18,7 @@ export const Route = createFileRoute("/modules/$slug/$taskId")({
 
 function TaskPage() {
   const { scenario, taskIndex } = Route.useLoaderData();
-  const task = scenario.tasks[taskIndex];
+  const task = scenario.tasks[taskIndex]!;
   const prev = scenario.tasks[taskIndex - 1];
   const next = scenario.tasks[taskIndex + 1];
 

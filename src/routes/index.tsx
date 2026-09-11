@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lock, Radio, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Lock, Radio, RotateCcw, ShieldCheck } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { completedFor } = useProgress();
+  const { completedFor, resetScenario } = useProgress();
 
   return (
     <div className="grain min-h-screen bg-background">
@@ -150,6 +150,19 @@ function Home() {
             const total = s.tasks.length;
             const pct = total ? Math.round((done / total) * 100) : 0;
             const available = s.status === "available";
+            const resetButton = available && done > 0 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (confirm(`Azzerare il progresso di "${s.title}"?`)) resetScenario(s.id);
+                }}
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-ivory"
+              >
+                <RotateCcw className="h-3 w-3" /> Azzera progresso
+              </button>
+            );
             const inner = (
               <article
                 className={cn(
@@ -200,8 +213,12 @@ function Home() {
                     </div>
                   )}
                   {available && (
-                    <div className="flex items-center gap-1.5 pt-3 text-sm text-gold transition group-hover:gap-3">
-                      Inizia il modulo <ArrowUpRight className="h-4 w-4" />
+                    <div className="flex items-center justify-between gap-3 pt-3">
+                      <span className="flex items-center gap-1.5 text-sm text-gold transition group-hover:gap-3">
+                        {done > 0 ? "Continua il modulo" : "Inizia il modulo"}
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                      {resetButton}
                     </div>
                   )}
                 </div>

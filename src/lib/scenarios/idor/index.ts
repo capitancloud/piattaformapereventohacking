@@ -1,4 +1,5 @@
 import type { Scenario } from "../types";
+import { idorSlides } from "./slides";
 import Task01Observe from "./tasks/Task01Observe";
 import Task02ChangeId from "./tasks/Task02ChangeId";
 import Task03Invoice from "./tasks/Task03Invoice";
@@ -19,6 +20,7 @@ export const idorScenario: Scenario = {
     "Quando un'applicazione espone un identificatore di risorsa (un numero, un UUID, un nome) e non verifica se hai il diritto di accedervi, chiunque conosca l'id può leggere o modificare dati altrui. Impareremo a riconoscere il pattern in URL, form e API.",
   difficulty: "Base",
   status: "available",
+  slides: idorSlides,
   tasks: [
     {
       id: "01-osserva",

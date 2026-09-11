@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Presentation } from "lucide-react";
 import { getScenario } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 
@@ -50,6 +50,16 @@ function ModuleIntro() {
           {completed.length === 0 ? "Inizia il primo task" : "Continua"}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
+        {scenario.slides && scenario.slides.length > 0 && (
+          <Link
+            to="/modules/$slug/slides"
+            params={{ slug: scenario.slug }}
+            className="group inline-flex items-center gap-2 rounded-md border border-gold/50 bg-surface px-6 py-3 text-sm font-medium text-gold transition hover:border-gold hover:bg-gold/10"
+          >
+            <Presentation className="h-4 w-4" />
+            Avvia slide
+          </Link>
+        )}
         <span className="text-sm text-muted-foreground">
           {scenario.tasks.length} micro-task · circa 20 minuti
         </span>

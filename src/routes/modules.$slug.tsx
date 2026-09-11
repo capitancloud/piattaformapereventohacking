@@ -5,26 +5,26 @@ import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/modules/$slug")({
-  loader: ({ params }) => {
-    const scenario = getScenario(params.slug);
-    if (!scenario) throw notFound();
-    return { scenario };
+  head: ({ params }) => {
+    const scenario = params?.slug ? getScenario(params.slug) : undefined;
+    return {
+      meta: scenario
+        ? [
+            { title: `${scenario.title} · CyberLab` },
+            { name: "description", content: scenario.intro.slice(0, 155) },
+            { property: "og:title", content: `${scenario.title} · CyberLab` },
+            { property: "og:description", content: scenario.intro.slice(0, 155) },
+          ]
+        : [{ title: "Modulo · CyberLab" }],
+    };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.scenario.title} · CyberLab` },
-          { name: "description", content: loaderData.scenario.intro.slice(0, 155) },
-          { property: "og:title", content: `${loaderData.scenario.title} · CyberLab` },
-          { property: "og:description", content: loaderData.scenario.intro.slice(0, 155) },
-        ]
-      : [{ title: "Modulo · CyberLab" }],
-  }),
   component: ModuleLayout,
 });
 
 function ModuleLayout() {
-  const { scenario } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const scenario = getScenario(slug);
+  if (!scenario) throw notFound();
   const { completedFor, resetScenario } = useProgress();
   const completed = completedFor(scenario.id);
   const matches = useMatches();

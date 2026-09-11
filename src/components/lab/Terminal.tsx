@@ -155,7 +155,7 @@ export function CodeBlock({
           {language}
         </div>
       )}
-      <pre className="max-h-80 overflow-auto p-4 font-mono text-[12px] leading-relaxed text-ivory/90">
+      <pre className="max-h-80 min-w-0 overflow-auto whitespace-pre-wrap break-all p-4 font-mono text-[12px] leading-relaxed text-ivory/90">
         {children}
       </pre>
     </div>

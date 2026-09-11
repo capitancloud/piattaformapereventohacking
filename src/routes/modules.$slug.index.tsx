@@ -4,16 +4,13 @@ import { getScenario } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 
 export const Route = createFileRoute("/modules/$slug/")({
-  loader: ({ params }) => {
-    const scenario = getScenario(params.slug);
-    if (!scenario) throw notFound();
-    return { scenario };
-  },
   component: ModuleIntro,
 });
 
 function ModuleIntro() {
-  const { scenario } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const scenario = getScenario(slug);
+  if (!scenario) throw notFound();
   const { completedFor } = useProgress();
   const completed = completedFor(scenario.id);
   const first = scenario.tasks[0]!;

@@ -99,26 +99,26 @@ function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-center">
           <div>
             <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold">
-              <Radio className="h-3.5 w-3.5" /> Companion dell'evento
+              <Radio className="h-3.5 w-3.5" /> Companion della giornata
             </p>
             <h2 className="font-serif text-3xl leading-tight text-ivory md:text-4xl">
-              Black Mirror non è solo uno spettacolo. È un laboratorio.
+              Black Mirror non è solo una giornata di teoria. È un laboratorio.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Ogni scenario del palco ha un corrispettivo qui dentro. Segui l'evento con il telefono
-              o il portatile aperto: quando lo speaker mostra una vulnerabilità, apri il modulo
+              Ogni modulo presentato in aula ha un corrispettivo qui dentro. Tieni il telefono o il
+              portatile aperto: quando mostriamo una vulnerabilità alla lavagna, apri lo scenario
               collegato e replicala tu, passo per passo, con feedback immediato.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              A fine evento la piattaforma resta con te: puoi rifare gli scenari, completare quelli
-              nuovi e portarti a casa un percorso strutturato — non solo il ricordo di una serata.
+              A fine giornata la piattaforma resta con te: puoi rifare gli scenari, completare
+              quelli nuovi e portarti a casa un percorso strutturato — non solo gli appunti.
             </p>
           </div>
           <div className="grid gap-3">
             {[
-              { k: "01", t: "Sul palco", d: "Un caso reale raccontato dagli speaker Black Mirror." },
+              { k: "01", t: "In aula", d: "Un caso reale presentato alla lavagna da noi due." },
               { k: "02", t: "Nel Lab", d: "Tu apri lo scenario collegato e provi l'attacco." },
-              { k: "03", t: "Dopo l'evento", d: "Il tuo progresso resta salvato: continui quando vuoi." },
+              { k: "03", t: "Dopo la giornata", d: "Il tuo progresso resta salvato: continui quando vuoi." },
             ].map((x) => (
               <div
                 key={x.k}

@@ -18,6 +18,16 @@ export interface Task {
   Simulation: ComponentType<TaskContext>;
 }
 
+export interface Slide {
+  kicker?: string;
+  title: string;
+  body?: string;
+  bullets?: string[];
+  code?: string;
+  accent?: "gold" | "danger" | "success" | "neutral";
+  icon?: string; // lucide icon name
+}
+
 export interface Scenario {
   id: string;
   slug: string;
@@ -27,4 +37,5 @@ export interface Scenario {
   difficulty: "Base" | "Intermedio" | "Avanzato";
   status: "available" | "coming-soon";
   tasks: Task[];
+  slides?: Slide[];
 }

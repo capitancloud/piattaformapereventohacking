@@ -9,6 +9,7 @@ import Task07AiAnalysis from "./tasks/Task07AiAnalysis";
 import Task08Behavior from "./tasks/Task08Behavior";
 import Task09Inverse from "./tasks/Task09Inverse";
 import Task10Quiz from "./tasks/Task10Quiz";
+import { revengSlides } from "./slides";
 
 export const reverseEngineeringScenario: Scenario = {
   id: "reverse-engineering",
@@ -17,6 +18,7 @@ export const reverseEngineeringScenario: Scenario = {
   subtitle: "Smonta uno script PowerShell malevolo e scrivi lo script che lo annulla",
   intro:
     "Il reverse engineering non è magia nera: è metodo. In questo modulo prendiamo un update.ps1 apparentemente innocuo trovato sul PC di un utente e lo smontiamo pezzo per pezzo. Impareremo a riconoscere le basi di PowerShell, a decodificare Base64 con -EncodedCommand, a superare tre livelli di offuscamento (concatenazione, char-code, XOR), a farci aiutare dall'AI con i prompt giusti, e infine a scrivere lo script di remediation che annulla gli effetti del malware. Tutto simulato dentro il browser: nessun codice viene realmente eseguito.",
+  slides: revengSlides,
   difficulty: "Base",
   status: "available",
   tasks: [

@@ -84,7 +84,7 @@ function TaskPage() {
         </div>
 
         {/* Simulation */}
-        <div>
+        <div className="min-w-0">
           <Simulation markComplete={markComplete} isComplete={isComplete} />
         </div>
       </div>

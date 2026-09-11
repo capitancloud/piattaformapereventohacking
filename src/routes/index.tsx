@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lock, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowUpRight, Lock, Radio, ShieldCheck } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
@@ -7,16 +7,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CyberLab — Impara la cybersecurity attaccando (in sicurezza)" },
+      { title: "Black Mirror Lab — Estensione digitale dell'evento live" },
       {
         name: "description",
         content:
-          "Un percorso interattivo per principianti: scenari di attacco simulati, micro-task guidati, apprendimento graduale.",
+          "L'estensione interattiva dell'evento Black Mirror: quattro scenari di attacco simulati per vivere in prima persona ciò che vedi sul palco.",
       },
-      { property: "og:title", content: "CyberLab — Impara la cybersecurity attaccando" },
+      { property: "og:title", content: "Black Mirror Lab — Estensione live" },
       {
         property: "og:description",
-        content: "Scenari di attacco simulati e interattivi per principianti.",
+        content:
+          "Quattro scenari, decine di micro-esperimenti. L'estensione digitale dell'evento Black Mirror.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,9 +37,12 @@ function Home() {
           <span className="grid h-8 w-8 place-items-center rounded-md border border-gold/40 bg-gold/10">
             <ShieldCheck className="h-4 w-4 text-gold" />
           </span>
-          <span className="font-serif text-xl tracking-tight text-ivory">CyberLab</span>
+          <span className="font-serif text-xl tracking-tight text-ivory">
+            Black Mirror <span className="text-gold">Lab</span>
+          </span>
         </Link>
         <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
+          <a href="#evento" className="transition hover:text-ivory">L'evento</a>
           <a href="#moduli" className="transition hover:text-ivory">Moduli</a>
           <a href="#come-funziona" className="transition hover:text-ivory">Come funziona</a>
         </nav>
@@ -47,17 +51,21 @@ function Home() {
       {/* Hero */}
       <section className="relative mx-auto max-w-6xl px-6 pt-12 pb-24 md:pt-24 md:pb-32">
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
-            <Sparkles className="h-3 w-3 text-gold" />
-            <span>Percorso interattivo · dal principiante alla pratica</span>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs text-gold">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
+            </span>
+            <span className="uppercase tracking-[0.2em]">Live · Black Mirror Event</span>
           </div>
           <h1 className="max-w-4xl font-serif text-5xl leading-[1.05] text-ivory md:text-7xl">
-            Impara la cybersecurity{" "}
-            <span className="italic text-gold">attaccando</span>, in un ambiente sicuro.
+            Ciò che vedi sul palco,{" "}
+            <span className="italic text-gold">lo fai qui</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Quattro scenari, decine di micro-esperimenti guidati. Nessun setup, nessun rischio:
-            manipoli davvero URL, form e API in simulazioni fedeli — e vedi cosa succede.
+            Black Mirror Lab è l'estensione digitale dell'evento live Black Mirror. Mentre sul palco
+            gli speaker raccontano una minaccia, tu la vivi qui: manipoli davvero URL, form e API in
+            simulazioni fedeli e sicure. Nessun setup, nessun rischio, nessuna macchina da bucare.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
@@ -65,14 +73,14 @@ function Home() {
               params={{ slug: "idor" }}
               className="group inline-flex items-center gap-2 rounded-md bg-gold px-6 py-3 text-sm font-medium text-primary-foreground transition hover:brightness-110"
             >
-              Inizia con IDOR
+              Entra nel primo scenario · IDOR
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a
               href="#moduli"
               className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-6 py-3 text-sm font-medium text-ivory transition hover:border-gold/60"
             >
-              Sfoglia i moduli
+              Sfoglia gli scenari
             </a>
           </div>
         </div>
@@ -84,13 +92,54 @@ function Home() {
         />
       </section>
 
+      {/* Evento */}
+      <section id="evento" className="border-y border-border bg-surface/40">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-center">
+          <div>
+            <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold">
+              <Radio className="h-3.5 w-3.5" /> Companion dell'evento
+            </p>
+            <h2 className="font-serif text-3xl leading-tight text-ivory md:text-4xl">
+              Black Mirror non è solo uno spettacolo. È un laboratorio.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Ogni scenario del palco ha un corrispettivo qui dentro. Segui l'evento con il telefono
+              o il portatile aperto: quando lo speaker mostra una vulnerabilità, apri il modulo
+              collegato e replicala tu, passo per passo, con feedback immediato.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              A fine evento la piattaforma resta con te: puoi rifare gli scenari, completare quelli
+              nuovi e portarti a casa un percorso strutturato — non solo il ricordo di una serata.
+            </p>
+          </div>
+          <div className="grid gap-3">
+            {[
+              { k: "01", t: "Sul palco", d: "Un caso reale raccontato dagli speaker Black Mirror." },
+              { k: "02", t: "Nel Lab", d: "Tu apri lo scenario collegato e provi l'attacco." },
+              { k: "03", t: "Dopo l'evento", d: "Il tuo progresso resta salvato: continui quando vuoi." },
+            ].map((x) => (
+              <div
+                key={x.k}
+                className="rounded-lg border border-border bg-background/60 p-4 transition hover:border-gold/50"
+              >
+                <div className="mb-1 flex items-center gap-3">
+                  <span className="font-mono text-xs text-gold">{x.k}</span>
+                  <span className="font-serif text-lg text-ivory">{x.t}</span>
+                </div>
+                <p className="text-sm text-muted-foreground">{x.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Moduli */}
-      <section id="moduli" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="moduli" className="mx-auto max-w-6xl px-6 pb-24 pt-24">
         <div className="mb-10 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gold">I moduli</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gold">Gli scenari</p>
             <h2 className="font-serif text-3xl text-ivory md:text-4xl">
-              Quattro scenari, un percorso graduale
+              Quattro capitoli, un solo filo conduttore
             </h2>
           </div>
         </div>
@@ -200,7 +249,8 @@ function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted-foreground">
-        CyberLab · Ambiente di apprendimento simulato. Nessuna richiesta di rete reale.
+        Black Mirror Lab · Estensione digitale dell'evento live. Ambiente simulato: nessuna
+        richiesta di rete reale, nessun sistema esterno coinvolto.
       </footer>
     </div>
   );

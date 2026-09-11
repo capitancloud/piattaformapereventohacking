@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lock, Radio, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Lock, Radio, RotateCcw, ShieldCheck } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { completedFor } = useProgress();
+  const { completedFor, resetScenario } = useProgress();
 
   return (
     <div className="grain min-h-screen bg-background">

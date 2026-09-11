@@ -89,8 +89,8 @@ export default function Task03Base64({ markComplete, isComplete }: TaskContext) 
       )}
       {isComplete && (
         <SuccessNote>
-          Ecco il vero contenuto: lo script imposta una chiave di registro
-          <code> HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code> — è{" "}
+          Ecco il vero contenuto: lo script imposta una chiave di registro{" "}
+          <code className="break-all">HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code> — è{" "}
           <strong>persistenza</strong>: al prossimo login dell'utente verrà rieseguita.
           Il valore lancia un secondo stage che scarica <code>a.ps1</code> da un IP
           esterno.

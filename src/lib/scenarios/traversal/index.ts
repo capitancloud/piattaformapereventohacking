@@ -18,6 +18,7 @@ export const traversalScenario: Scenario = {
   subtitle: "Uscire dalla cartella prevista dall'applicazione",
   intro:
     "Quando un'applicazione compone un percorso di file usando un input dell'utente, chi conosce la struttura del filesystem può risalire le cartelle con ../ e leggere file che non dovrebbe: /etc/passwd, chiavi SSH, file di configurazione con password del database. Vediamo come funziona, come i filtri ingenui vengono aggirati, e come si difende davvero.",
+  slides: traversalSlides,
   difficulty: "Base",
   status: "available",
   tasks: [

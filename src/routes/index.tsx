@@ -150,6 +150,19 @@ function Home() {
             const total = s.tasks.length;
             const pct = total ? Math.round((done / total) * 100) : 0;
             const available = s.status === "available";
+            const resetButton = available && done > 0 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (confirm(`Azzerare il progresso di "${s.title}"?`)) resetScenario(s.id);
+                }}
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-ivory"
+              >
+                <RotateCcw className="h-3 w-3" /> Azzera progresso
+              </button>
+            );
             const inner = (
               <article
                 className={cn(

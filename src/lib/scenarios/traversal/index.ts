@@ -9,6 +9,7 @@ import Task07NullByte from "./tasks/Task07NullByte";
 import Task08Config from "./tasks/Task08Config";
 import Task09Api from "./tasks/Task09Api";
 import Task10Quiz from "./tasks/Task10Quiz";
+import { traversalSlides } from "./slides";
 
 export const traversalScenario: Scenario = {
   id: "directory-traversal",
@@ -17,6 +18,7 @@ export const traversalScenario: Scenario = {
   subtitle: "Uscire dalla cartella prevista dall'applicazione",
   intro:
     "Quando un'applicazione compone un percorso di file usando un input dell'utente, chi conosce la struttura del filesystem può risalire le cartelle con ../ e leggere file che non dovrebbe: /etc/passwd, chiavi SSH, file di configurazione con password del database. Vediamo come funziona, come i filtri ingenui vengono aggirati, e come si difende davvero.",
+  slides: traversalSlides,
   difficulty: "Base",
   status: "available",
   tasks: [

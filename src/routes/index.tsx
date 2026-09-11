@@ -219,7 +219,22 @@ function Home() {
                         {done > 0 ? "Continua il modulo" : "Inizia il modulo"}
                         <ArrowUpRight className="h-4 w-4" />
                       </span>
-                      {resetButton}
+                      <div className="flex items-center gap-3">
+                        {s.slides && s.slides.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              navigate({ to: "/modules/$slug/slides", params: { slug: s.slug } });
+                            }}
+                            className="inline-flex items-center gap-1.5 rounded-md border border-gold/40 bg-gold/5 px-2.5 py-1 text-xs text-gold transition hover:border-gold hover:bg-gold/15"
+                          >
+                            <Presentation className="h-3 w-3" /> Avvia slide
+                          </button>
+                        )}
+                        {resetButton}
+                      </div>
                     </div>
                   )}
                 </div>

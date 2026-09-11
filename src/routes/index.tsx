@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Black Mirror Lab — Estensione digitale dell'evento live" },
+      { title: "Black Mirror Lab — Giornata di formazione interattiva" },
       {
         name: "description",
         content:
-          "L'estensione interattiva dell'evento Black Mirror: quattro scenari di attacco simulati per vivere in prima persona ciò che vedi sul palco.",
+          "Il laboratorio interattivo della giornata di formazione Black Mirror: quattro scenari di attacco simulati, da eseguire in prima persona durante e dopo le lezioni.",
       },
-      { property: "og:title", content: "Black Mirror Lab — Estensione live" },
+      { property: "og:title", content: "Black Mirror Lab — Giornata di formazione interattiva" },
       {
         property: "og:description",
         content:
-          "Quattro scenari, decine di micro-esperimenti. L'estensione digitale dell'evento Black Mirror.",
+          "Quattro scenari, decine di micro-task. Il laboratorio interattivo della giornata di formazione Black Mirror.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,7 +43,7 @@ function Home() {
           </span>
         </Link>
         <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#evento" className="transition hover:text-ivory">L'evento</a>
+          <a href="#evento" className="transition hover:text-ivory">La giornata</a>
           <a href="#moduli" className="transition hover:text-ivory">Moduli</a>
           <a href="#come-funziona" className="transition hover:text-ivory">Come funziona</a>
         </nav>
@@ -57,15 +57,16 @@ function Home() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
             </span>
-            <span className="uppercase tracking-[0.2em]">Live · Black Mirror Event</span>
+            <span className="uppercase tracking-[0.2em]">Giornata di formazione · Cybersecurity</span>
           </div>
           <h1 className="max-w-4xl font-serif text-5xl leading-[1.05] text-ivory md:text-7xl">
-            Ciò che vedi sul palco,{" "}
-            <span className="italic text-gold">lo fai qui</span>.
+            La teoria la senti in aula.{" "}
+            <span className="italic text-gold">L'attacco lo fai qui</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Black Mirror Lab è l'estensione digitale dell'evento live Black Mirror. Mentre sul palco
-            gli speaker raccontano una minaccia, tu la vivi qui: manipoli davvero URL, form e API in
+            Black Mirror Lab è il laboratorio pratico della giornata di formazione Black Mirror:
+            una giornata in aula con 20 studenti, condita da me e da un collega. Ogni volta che
+            presentiamo una minaccia, la replichi tu qui: manipoli davvero URL, form e API in
             simulazioni fedeli e sicure. Nessun setup, nessun rischio, nessuna macchina da bucare.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -98,26 +99,26 @@ function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-center">
           <div>
             <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold">
-              <Radio className="h-3.5 w-3.5" /> Companion dell'evento
+              <Radio className="h-3.5 w-3.5" /> Companion della giornata
             </p>
             <h2 className="font-serif text-3xl leading-tight text-ivory md:text-4xl">
-              Black Mirror non è solo uno spettacolo. È un laboratorio.
+              Black Mirror non è solo una giornata di teoria. È un laboratorio.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Ogni scenario del palco ha un corrispettivo qui dentro. Segui l'evento con il telefono
-              o il portatile aperto: quando lo speaker mostra una vulnerabilità, apri il modulo
+              Ogni modulo presentato in aula ha un corrispettivo qui dentro. Tieni il telefono o il
+              portatile aperto: quando mostriamo una vulnerabilità alla lavagna, apri lo scenario
               collegato e replicala tu, passo per passo, con feedback immediato.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              A fine evento la piattaforma resta con te: puoi rifare gli scenari, completare quelli
-              nuovi e portarti a casa un percorso strutturato — non solo il ricordo di una serata.
+              A fine giornata la piattaforma resta con te: puoi rifare gli scenari, completare
+              quelli nuovi e portarti a casa un percorso strutturato — non solo gli appunti.
             </p>
           </div>
           <div className="grid gap-3">
             {[
-              { k: "01", t: "Sul palco", d: "Un caso reale raccontato dagli speaker Black Mirror." },
+              { k: "01", t: "In aula", d: "Un caso reale presentato alla lavagna da noi due." },
               { k: "02", t: "Nel Lab", d: "Tu apri lo scenario collegato e provi l'attacco." },
-              { k: "03", t: "Dopo l'evento", d: "Il tuo progresso resta salvato: continui quando vuoi." },
+              { k: "03", t: "Dopo la giornata", d: "Il tuo progresso resta salvato: continui quando vuoi." },
             ].map((x) => (
               <div
                 key={x.k}
@@ -282,8 +283,8 @@ function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted-foreground">
-        Black Mirror Lab · Estensione digitale dell'evento live. Ambiente simulato: nessuna
-        richiesta di rete reale, nessun sistema esterno coinvolto.
+        Black Mirror Lab · Laboratorio interattivo della giornata di formazione. Ambiente simulato:
+        nessuna richiesta di rete reale, nessun sistema esterno coinvolto.
       </footer>
     </div>
   );

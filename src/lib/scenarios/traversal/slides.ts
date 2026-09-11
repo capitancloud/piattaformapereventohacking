@@ -50,7 +50,7 @@ export const traversalSlides: Slide[] = [
   {
     kicker: "Task 04 · Windows/IIS",
     title: "Uscire dalla cartella anche su Windows",
-    body: "Su Windows la logica è identica ma cambiano i dettagli: le cartelle si separano con \\, i percorsi partono da C:\\, e IIS serve i file da C:\\inetpub\\wwwroot. I file di prova diventano win.ini (il equivalente storico di /etc/passwd) e la mappa di rete in hosts.",
+    body: "Su Windows la logica è identica ma cambiano i dettagli: le cartelle si separano con \\, i percorsi partono da C:\\, e IIS serve i file da C:\\inetpub\\wwwroot. I file di prova diventano win.ini (l'equivalente storico di /etc/passwd) e la mappa di rete in hosts.",
     note: "L'attacco funziona su qualsiasi sistema operativo: cambia il principio di nulla, cambiano solo file di prova e separatori. È anche il contesto in cui vive lo scenario successivo del modulo Reverse Shell.",
     bullets: [
       "File di prova tipico: C:\\Windows\\win.ini",
@@ -99,7 +99,7 @@ export const traversalSlides: Slide[] = [
     bullets: [
       "app.conf / .env / database.yml: password in chiaro",
       "Messaggi API, header, cookie: tutto input che si può cambiare",
-      "Numeri opachi + secret manager = il difetto sparice del tutto",
+      "Numeri opachi + secret manager = il difetto sparisce del tutto",
     ],
     accent: "danger",
     icon: "Vault",
@@ -108,7 +108,7 @@ export const traversalSlides: Slide[] = [
     kicker: "Task 10 · Sintesi",
     title: "Le tre regole d'oro",
     body: "Dieci domande finali per fissare i concetti, poi si passa alla pratica. Le domande ripercorrono il modulo: cos'è l'uscita dalla cartella, come si aggirano i filtri, dove si nasconde oltre che negli URL, e le difese davvero efficaci. Se sbagli, torna al task corrispondente — non c'è penalità nel riprovare.",
-    note: "Consiglio: rispondi prima senza rileggere le slide, poi chiediti: dove sta il decodifica? dove sta il filtro? la password sta in un file o fuori?",
+    note: "Consiglio: rispondi prima senza rileggere le slide, poi chiediti: chi decodifica? dove sta il filtro? la password sta in un file o fuori?",
     bullets: [
       "1 · Decodifica e normalizza PRIMA di controllare",
       "2 · Chiudi il processo in un spazio protetto: container, permessi minimi",

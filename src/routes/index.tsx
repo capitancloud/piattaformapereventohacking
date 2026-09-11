@@ -283,8 +283,8 @@ function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted-foreground">
-        Black Mirror Lab · Estensione digitale dell'evento live. Ambiente simulato: nessuna
-        richiesta di rete reale, nessun sistema esterno coinvolto.
+        Black Mirror Lab · Laboratorio interattivo della giornata di formazione. Ambiente simulato:
+        nessuna richiesta di rete reale, nessun sistema esterno coinvolto.
       </footer>
     </div>
   );

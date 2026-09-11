@@ -28,7 +28,7 @@ function ModuleLayout() {
   const { completedFor, resetScenario } = useProgress();
   const completed = completedFor(scenario.id);
   const matches = useMatches();
-  const activeTaskId = matches[matches.length - 1]?.params?.taskId as string | undefined;
+  const activeTaskId = (matches[matches.length - 1]?.params as { taskId?: string } | undefined)?.taskId;
 
   if (scenario.status === "coming-soon") {
     return (

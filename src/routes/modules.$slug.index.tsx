@@ -20,8 +20,9 @@ function ModuleIntro() {
     <div className="animate-in fade-in slide-in-from-bottom-2 max-w-3xl duration-500">
       <p className="mb-3 text-xs uppercase tracking-[0.2em] text-gold">Introduzione</p>
       <h2 className="font-serif text-4xl leading-tight text-ivory md:text-5xl">
-        Cos'è una vulnerabilità <em className="text-gold">IDOR</em>
+        {scenario.title}
       </h2>
+      <p className="mt-2 text-lg italic text-gold/90">{scenario.subtitle}</p>
       <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{scenario.intro}</p>
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">

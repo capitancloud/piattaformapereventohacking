@@ -41,7 +41,7 @@ function TaskPage() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.15fr]">
         {/* Instructions */}
-        <div>
+        <div className="min-w-0">
           <p className="text-base leading-relaxed text-ivory/90">{task.brief}</p>
 
           {task.details && (

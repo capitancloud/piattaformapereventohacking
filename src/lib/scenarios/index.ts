@@ -1,19 +1,10 @@
 import type { Scenario } from "./types";
 import { idorScenario } from "./idor";
+import { traversalScenario } from "./traversal";
 
 export const scenarios: Scenario[] = [
   idorScenario,
-  {
-    id: "directory-traversal",
-    slug: "directory-traversal",
-    title: "Directory Traversal",
-    subtitle: "Path traversal e lettura di file arbitrari",
-    intro:
-      "Manipolare i percorsi per leggere file al di fuori della cartella prevista dall'applicazione.",
-    difficulty: "Base",
-    status: "coming-soon",
-    tasks: [],
-  },
+  traversalScenario,
   {
     id: "reverse-shell",
     slug: "reverse-shell",

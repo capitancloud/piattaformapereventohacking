@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Black Mirror Lab — Estensione digitale dell'evento live" },
+      { title: "Black Mirror Lab — Giornata di formazione interattiva" },
       {
         name: "description",
         content:
-          "L'estensione interattiva dell'evento Black Mirror: quattro scenari di attacco simulati per vivere in prima persona ciò che vedi sul palco.",
+          "Il laboratorio interattivo della giornata di formazione Black Mirror: quattro scenari di attacco simulati, da eseguire in prima persona durante e dopo le lezioni.",
       },
-      { property: "og:title", content: "Black Mirror Lab — Estensione live" },
+      { property: "og:title", content: "Black Mirror Lab — Giornata di formazione interattiva" },
       {
         property: "og:description",
         content:
-          "Quattro scenari, decine di micro-esperimenti. L'estensione digitale dell'evento Black Mirror.",
+          "Quattro scenari, decine di micro-task. Il laboratorio interattivo della giornata di formazione Black Mirror.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

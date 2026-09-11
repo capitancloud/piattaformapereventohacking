@@ -6,18 +6,15 @@ import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/modules/$slug/$taskId")({
-  loader: ({ params }) => {
-    const scenario = getScenario(params.slug);
-    if (!scenario) throw notFound();
-    const idx = scenario.tasks.findIndex((t) => t.id === params.taskId);
-    if (idx === -1) throw notFound();
-    return { scenario, taskIndex: idx };
-  },
   component: TaskPage,
 });
 
 function TaskPage() {
-  const { scenario, taskIndex } = Route.useLoaderData();
+  const { slug, taskId } = Route.useParams();
+  const scenario = getScenario(slug);
+  if (!scenario) throw notFound();
+  const taskIndex = scenario.tasks.findIndex((t) => t.id === taskId);
+  if (taskIndex === -1) throw notFound();
   const task = scenario.tasks[taskIndex]!;
   const prev = scenario.tasks[taskIndex - 1];
   const next = scenario.tasks[taskIndex + 1];

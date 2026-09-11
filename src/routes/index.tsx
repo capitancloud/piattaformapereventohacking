@@ -28,6 +28,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { completedFor, resetScenario } = useProgress();
+  const navigate = useNavigate();
 
   return (
     <div className="grain min-h-screen bg-background">

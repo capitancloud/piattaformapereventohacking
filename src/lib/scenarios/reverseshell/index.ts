@@ -9,6 +9,7 @@ import Task07Trigger from "./tasks/Task07Trigger";
 import Task08Interact from "./tasks/Task08Interact";
 import Task09Defense from "./tasks/Task09Defense";
 import Task10Quiz from "./tasks/Task10Quiz";
+import { reverseShellSlides } from "./slides";
 
 export const reverseShellScenario: Scenario = {
   id: "reverse-shell",
@@ -17,6 +18,7 @@ export const reverseShellScenario: Scenario = {
   subtitle: "Da un upload dimenticato a una shell interattiva su Windows Server",
   intro:
     "Un web server Microsoft IIS con un endpoint di upload mal configurato è uno dei percorsi più classici verso una compromissione totale. In questo modulo si ripercorre l'intera catena: ricognizione, scoperta dell'upload, webshell ASPX, allestimento del listener, generazione del payload PowerShell, trigger e shell interattiva. Ogni passaggio è simulato dentro il browser — nessun vero server, nessun vero attacco — ma i flussi, i comandi e gli errori sono quelli reali.",
+  slides: reverseShellSlides,
   difficulty: "Intermedio",
   status: "available",
   tasks: [

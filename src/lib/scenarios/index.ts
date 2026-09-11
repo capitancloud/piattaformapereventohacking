@@ -1,17 +1,19 @@
 import type { Scenario } from "./types";
 import { idorScenario } from "./idor";
 import { traversalScenario } from "./traversal";
+import { reverseShellScenario } from "./reverseshell";
 
 export const scenarios: Scenario[] = [
   idorScenario,
   traversalScenario,
+  reverseShellScenario,
   {
-    id: "reverse-shell",
-    slug: "reverse-shell",
-    title: "Reverse Shell su IIS",
-    subtitle: "Payload ASPX su Windows IIS",
+    id: "reverse-shell-placeholder",
+    slug: "reverse-shell-placeholder",
+    title: "",
+    subtitle: "",
     intro:
-      "Caricare uno script ASPX su un server IIS Windows e ottenere una shell inversa remota controllata.",
+      "",
     difficulty: "Intermedio",
     status: "coming-soon",
     tasks: [],

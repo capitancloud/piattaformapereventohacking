@@ -57,7 +57,7 @@ export const idorSlides: Slide[] = [
     body: "L'IDOR può stare anche in un campo nascosto di un form, in un messaggio inviato a un'API, in un header HTTP. La regola è una: tutto quello che parte dal tuo browser si può cambiare in pochi secondi con DevTools.",
     bullets: [
       "/download?doc=87 → cambia il numero e scarichi il documento di un altro",
-      "I campi nascosti si vedono apri DevTools",
+      "I campi nascosti si vedono con DevTools",
       "«Mai fidarsi del client»: il client è sempre in mano a un attaccante",
     ],
     icon: "Boxes",

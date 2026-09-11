@@ -9,6 +9,7 @@ import Task07NullByte from "./tasks/Task07NullByte";
 import Task08Config from "./tasks/Task08Config";
 import Task09Api from "./tasks/Task09Api";
 import Task10Quiz from "./tasks/Task10Quiz";
+import { traversalSlides } from "./slides";
 
 export const traversalScenario: Scenario = {
   id: "directory-traversal",

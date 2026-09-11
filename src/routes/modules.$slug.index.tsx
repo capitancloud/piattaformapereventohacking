@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Presentation } from "lucide-react";
 import { getScenario } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 

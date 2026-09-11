@@ -12,7 +12,7 @@ export default function Task03Webshell({ markComplete, isComplete }: TaskContext
         <Legend
           label="1"
           title="Direttiva di pagina"
-          text="<%@ Page Language=\"C#\" %> dice a IIS che questo file va compilato ed eseguito come C#."
+          text={'<%@ Page Language="C#" %> dice a IIS che questo file va compilato ed eseguito come C#.'}
         />
         <Legend
           label="2"

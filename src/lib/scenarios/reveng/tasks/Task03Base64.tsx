@@ -60,15 +60,15 @@ export default function Task03Base64({ markComplete, isComplete }: TaskContext) 
           placeholder="JABwAD0AJwBIAEsAQwBVADoAXABTAG8AZgB0AHcA..."
           className="w-full rounded-md border border-border bg-background p-3 font-mono text-[11px] text-ivory outline-none focus:border-gold focus:ring-2 focus:ring-gold/25"
         />
-        <div className="mt-3 flex items-center gap-3">
+        <div className="mt-3 flex flex-wrap items-center gap-3">
           <button
             onClick={decode}
-            className="rounded-md bg-gold px-4 py-2 text-xs font-medium text-primary-foreground transition hover:brightness-110 active:scale-95"
+            className="shrink-0 rounded-md bg-gold px-4 py-2 text-xs font-medium text-primary-foreground transition hover:brightness-110 active:scale-95"
           >
             Decodifica
           </button>
-          <span className="font-mono text-[11px] text-muted-foreground">
-            equivalente di:  [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($b))
+          <span className="min-w-0 flex-1 break-all font-mono text-[11px] text-muted-foreground">
+            equivalente di: [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($b))
           </span>
         </div>
       </div>

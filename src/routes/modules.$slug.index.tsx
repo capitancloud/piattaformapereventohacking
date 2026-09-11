@@ -16,7 +16,7 @@ function ModuleIntro() {
   const { scenario } = Route.useLoaderData();
   const { completedFor } = useProgress();
   const completed = completedFor(scenario.id);
-  const first = scenario.tasks[0];
+  const first = scenario.tasks[0]!;
   const nextUncompleted = scenario.tasks.find((t) => !completed.includes(t.id)) ?? first;
 
   return (

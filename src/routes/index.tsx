@@ -60,8 +60,8 @@ function Home() {
             <span className="uppercase tracking-[0.2em]">Giornata di formazione · Cybersecurity</span>
           </div>
           <h1 className="max-w-4xl font-serif text-5xl leading-[1.05] text-ivory md:text-7xl">
-            La teoria la senti in aula.{" "}
-            <span className="italic text-gold">L'attacco lo fai qui</span>.
+            Benvenuti nel laboratorio pratico di{" "}
+            <span className="italic text-gold">Black Mirror</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Black Mirror Lab è il laboratorio pratico della giornata di formazione Black Mirror.

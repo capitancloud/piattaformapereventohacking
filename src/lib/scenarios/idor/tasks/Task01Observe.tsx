@@ -6,9 +6,9 @@ import type { TaskContext } from "../../types";
 
 export default function Task01Observe({ markComplete, isComplete }: TaskContext) {
   const [idx, setIdx] = useState(0);
-  const [seen, setSeen] = useState<Set<number>>(new Set([MY_ORDERS[0]]));
-  const orderId = MY_ORDERS[idx];
-  const order = ORDERS[orderId];
+  const [seen, setSeen] = useState<Set<number>>(() => new Set<number>([MY_ORDERS[0]!]));
+  const orderId = MY_ORDERS[idx]!;
+  const order = ORDERS[orderId]!;
 
   return (
     <div>

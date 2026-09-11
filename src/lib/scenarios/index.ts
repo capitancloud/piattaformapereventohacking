@@ -8,17 +8,6 @@ export const scenarios: Scenario[] = [
   traversalScenario,
   reverseShellScenario,
   {
-    id: "reverse-shell-placeholder",
-    slug: "reverse-shell-placeholder",
-    title: "",
-    subtitle: "",
-    intro:
-      "",
-    difficulty: "Intermedio",
-    status: "coming-soon",
-    tasks: [],
-  },
-  {
     id: "reverse-engineering",
     slug: "reverse-engineering",
     title: "Reverse Engineering (base)",

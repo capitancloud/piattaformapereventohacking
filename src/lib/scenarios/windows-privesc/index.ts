@@ -122,9 +122,11 @@ La sequenza corretta è: verifica HKLM, verifica HKCU, crea l'MSI con il payload
       goal: "Riconoscere i privilegi di token che equivalgono a SYSTEM",
       brief:
         "«whoami /priv» elenca i privilegi del tuo token. Alcuni sono innocui (SeShutdownPrivilege), altri sono la strada regia per SYSTEM: SeImpersonatePrivilege, SeAssignPrimaryTokenPrivilege, SeBackupPrivilege, SeRestorePrivilege.",
-      details: `Il caso più celebre è SeImpersonatePrivilege: gli account di servizio (IIS, MSSQL) lo hanno per default, e con exploit come JuicyPotato/PrintSpoofer si passa a SYSTEM in pochi secondi.
+      details: `In Windows ogni processo ha un token, cioè un biglietto che dice quali privilegi possiede. Il comando whoami /priv elenca i privilegi del token del tuo processo. Alcuni privilegi sono normali e innocui: per esempio SeShutdownPrivilege ti permette solo di spegnere il computer. Altri privilegi, invece, sono praticamente equivalenti a SYSTEM.
 
-Guarda la lista di privilegi trovati sul token e clicca quelli che rappresentano una via verso SYSTEM.`,
+Il più famoso è SeImpersonatePrivilege. Gli account di servizio come quelli usati da IIS o SQL Server spesso lo hanno per default, perché devono impersonare gli utenti che si collegano. Se tu hai questo privilegio, puoi usare strumenti come JuicyPotato o PrintSpoofer per ottenere un token di SYSTEM e da lì una shell come SYSTEM. Altri privilegi pericolosi sono SeAssignPrimaryTokenPrivilege, SeBackupPrivilege, SeRestorePrivilege e SeDebugPrivilege.
+
+SeBackupPrivilege permette di leggere file normalmente protetti, come SAM e SYSTEM, da cui estrarre gli hash degli utenti locali. SeRestorePrivilege permette di sovrascrivere file protetti. SeDebugPrivilege permette di accedere ai processi di altri utenti, inclusi quelli di SYSTEM, per rubare token. Nella simulazione vedrai una lista di privilegi e dovrai cliccare quelli che aprono una via verso SYSTEM.`,
       hint: "Impersonate, AssignPrimaryToken, Backup, Restore, Debug: tutti «rossi». Shutdown e ChangeNotify sono normali.",
       explanation: "Sai leggere whoami /priv e vedere subito se il token è già «regalato».",
       Simulation: Task07Tokens,
@@ -135,13 +137,13 @@ Guarda la lista di privilegi trovati sul token e clicca quelli che rappresentano
       goal: "Trovare credenziali salvate in chiaro sul sistema",
       brief:
         "Windows conserva credenziali un po' ovunque: chiavi di autologon, file di risposta di installazione (Unattend.xml), preferenze di Group Policy. Se non vengono ripulite, sono un tesoro.",
-      details: `Le zone classiche da controllare sono:
+      details: `Windows ha la tendenza a lasciare in giro credenziali. Gli amministratori, soprattutto in ambienti che non vengono ripuliti periodicamente, lasciano password in chiaro in file di configurazione, chiavi di registro o script. Trovare una di queste password può essere la scorciatoia più veloce per salire di privilegi.
 
-  reg query HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon
-  C:\\Windows\\Panther\\Unattend.xml
-  \\\\dominio\\SYSVOL\\...\\Groups.xml   (GPP cpassword, ormai storico)
+La prima zona classica è la chiave di registro Winlogon, sotto HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon. Se AutoAdminLogon è impostato a 1, Windows può eseguire il login automatico all'avvio, e la password è spesso salvata in chiaro nel valore DefaultPassword.
 
-Nel task hai tre finestre: clicca solo dove ci sono davvero credenziali sfruttabili.`,
+La seconda zona è il file C:\\Windows\\Panther\\Unattend.xml. È un file di risposta usato durante l'installazione automatica di Windows. Spesso contiene password di amministratori locali, account di dominio o credenziali di join al dominio. Dopo l'installazione il file resta lì, dimenticato.
+
+La terza zona storica è SYSVOL, la condivisione di rete usata dalle Group Policy. I vecchi file Groups.xml contenevano password cifrate con una chiave pubblica nota, quindi erano facilmente decifrabili. Nella simulazione vedrai cinque finestre e dovrai cliccare solo quelle che contengono davvero credenziali sfruttabili.`,
       hint: "AutoAdminLogon = 1 con DefaultPassword, Unattend con <Password>, Groups.xml con cpassword.",
       explanation: "Sai dove Windows lascia credenziali dimenticate e come riconoscerle a colpo d'occhio.",
       Simulation: Task08Registry,
@@ -152,7 +154,15 @@ Nel task hai tre finestre: clicca solo dove ci sono davvero credenziali sfruttab
       goal: "Portare un utente qualunque fino a SYSTEM scegliendo tu la strada",
       brief:
         "Sei l'utente «alex» su win10-dev. L'enumerazione con winPEAS ha rivelato tre indizi diversi: un servizio scrivibile, AlwaysInstallElevated attivo e SeImpersonatePrivilege sul token del web server. Scegli la strada.",
-      details: `Ogni scelta porta a SYSTEM, ma con rumore e complessità diversi. Prova a immaginare quale useresti in un pentest reale e osserva la simulazione della scalata passo per passo.`,
+      details: `Sei l'utente alex sulla macchina win10-dev. Hai eseguito winPEAS e hai trovato tre indizi diversi, ognuno dei quali potrebbe portarti a SYSTEM. Ora devi scegliere la strada. Questo laboratorio ti fa capire che, nella vita reale, spesso hai più opzioni e devi valutare quale sia la più adatta al contesto.
+
+La prima strada passa da un servizio scrivibile. Hai scoperto che VulnSvc può essere modificato dagli utenti normali. Con sc config cambi il binario di avvio, poi fermi e riavvii il servizio. Al riavvio, Windows esegue il tuo comando come SYSTEM e aggiunge alex al gruppo Administrators.
+
+La seconda strada passa da AlwaysInstallElevated. Entrambe le chiavi di registro sono a 1, quindi puoi installare un MSI malevolo che apre una shell come SYSTEM. È veloce, ma crea un processo msiexec visibile e può lasciare tracce nei log di installazione.
+
+La terza strada passa dal token. Sei partito da una web shell IIS, quindi il processo ha SeImpersonatePrivilege. Carichi PrintSpoofer.exe e lo lanci: in pochi secondi ottieni una shell NT AUTHORITY\\SYSTEM. È spesso la più silenziosa, ma richiede di avere già un punto d'appoggio sul servizio.
+
+Nella simulazione puoi aprire ogni scheda e vedere i comandi esatti. Non c'è una risposta unica: ogni strada è valida, ma ha rumore e complessità diversi.`,
       hint: "Non c'è una risposta unica: apri tutte le strade per confrontarle.",
       explanation: "Hai completato una scalata a SYSTEM scegliendo la tecnica più adatta agli indizi.",
       Simulation: Task09Lab,
@@ -163,7 +173,9 @@ Nel task hai tre finestre: clicca solo dove ci sono davvero credenziali sfruttab
       goal: "Consolidare le tecniche di privilege escalation su Windows",
       brief:
         "Dieci domande semplici sui concetti chiave: UAC, servizi, unquoted path, MSI, token, credenziali. Bastano sette risposte corrette.",
-      details: `Se una domanda ti mette in difficoltà, torna al micro-task corrispondente. L'obiettivo è saper guardare una macchina Windows e riconoscere in cinque minuti quali sono le tre-quattro vie più promettenti verso SYSTEM.`,
+      details: `Il quiz finale serve a fissare i concetti chiave dello scenario. Non devi memorizzare a memoria ogni comando, ma devi riconoscere i meccanismi: quando UAC è aggirabile, quando un servizio è mal configurato, quando un percorso senza virgolette è pericoloso, quando AlwaysInstallElevated è attivo, quando un token ha privilegi pericolosi, dove Windows nasconde le password.
+
+Nel lavoro reale, un pentester guarda l'output di winPEAS o di whoami /priv e in pochi minuti sa dire quali sono le strade più probabili. Se una domanda ti sembra difficile, torna al task corrispondente e rileggi la spiegazione. Bastano sette risposte corrette su dieci per completare lo scenario.`,
       hint: "Le risposte più prudenti e metodologicamente corrette sono di solito quelle giuste.",
       explanation: "Hai completato lo scenario Privilege Escalation su Windows.",
       Simulation: Task10Quiz,

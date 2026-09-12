@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Cloud, Network, ShieldOff } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
 import type { TaskContext } from "../../types";
 import { cn } from "@/lib/utils";

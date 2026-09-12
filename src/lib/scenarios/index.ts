@@ -1,15 +1,7 @@
 import type { Scenario } from "./types";
-import { idorScenario } from "./idor";
-import { traversalScenario } from "./traversal";
-import { reverseShellScenario } from "./reverseshell";
-import { reverseEngineeringScenario } from "./reveng";
+import { networkingScenario } from "./networking";
 
-export const scenarios: Scenario[] = [
-  idorScenario,
-  traversalScenario,
-  reverseShellScenario,
-  reverseEngineeringScenario,
-];
+export const scenarios: Scenario[] = [networkingScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

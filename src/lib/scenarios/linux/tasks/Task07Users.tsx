@@ -27,32 +27,27 @@ const SITUATIONS = [
 
 export default function Task07Users({ markComplete, isComplete }: TaskContext) {
   const [choices, setChoices] = useState<Record<number, boolean | undefined>>({});
-  const [checked, setChecked] = useState<Record<number, boolean>>({});
+  const [checked, setChecked] = useState(false);
 
   const choose = (id: number, withSudo: boolean) => {
     setChoices((c) => ({ ...c, [id]: withSudo }));
-    setChecked((c) => ({ ...c, [id]: false }));
+    setChecked(false);
   };
 
-  const verify = (id: number) => {
-    const situation = SITUATIONS.find((s) => s.id === id)!;
-    const correct = choices[id] === situation.needsSudo;
-    setChecked((c) => ({ ...c, [id]: true }));
-    if (SITUATIONS.every((s) => checked[s.id] || (s.id === id ? correct : choices[s.id] === s.needsSudo))) {
-      const allCorrect = SITUATIONS.every((s) => choices[s.id] === s.needsSudo);
-      if (allCorrect) markComplete();
-    }
-  };
+  const allCorrect = SITUATIONS.every((s) => choices[s.id] === s.needsSudo) && Object.keys(choices).length === SITUATIONS.length;
 
-  const allDone = SITUATIONS.every((s) => checked[s.id]);
+  const verify = () => {
+    setChecked(true);
+    if (allCorrect) markComplete();
+  };
 
   return (
     <div>
       <div className="space-y-4">
         {SITUATIONS.map((s) => {
           const picked = choices[s.id];
-          const isChecked = checked[s.id];
-          const correct = picked === s.needsSudo;
+          const correct = checked && picked === s.needsSudo;
+          const wrong = checked && picked !== undefined && picked !== s.needsSudo;
           return (
             <div key={s.id} className="rounded-xl border border-border bg-surface p-5">
               <div className="mb-2 text-sm text-foreground">{s.text}</div>
@@ -82,14 +77,16 @@ export default function Task07Users({ markComplete, isComplete }: TaskContext) {
                   {s.command}
                 </button>
               </div>
-              {isChecked && (
-                <div className={cn("mt-3 flex items-center gap-2 text-sm", correct ? "text-success" : "text-destructive")}>
-                  {correct ? <CheckCircle2 className="h-4 w-4" /> : <Shield className="h-4 w-4" />}
+              {checked && (
+                <div className={cn("mt-3 flex items-center gap-2 text-sm", correct ? "text-success" : wrong ? "text-destructive" : "text-muted-foreground")}>
+                  {correct && <CheckCircle2 className="h-4 w-4" />}
                   {correct
                     ? "Giusto."
-                    : s.needsSudo
-                      ? "Serve sudo: questo comando tocca parti di sistema."
-                      : "Non serve sudo: è un'operazione dell'utente corrente."}
+                    : wrong
+                      ? s.needsSudo
+                        ? "Serve sudo: questo comando tocca parti di sistema."
+                        : "Non serve sudo: è un'operazione dell'utente corrente."
+                      : "Scegli un'opzione."}
                 </div>
               )}
             </div>
@@ -98,7 +95,7 @@ export default function Task07Users({ markComplete, isComplete }: TaskContext) {
       </div>
 
       <button
-        onClick={() => SITUATIONS.forEach((s) => verify(s.id))}
+        onClick={verify}
         disabled={SITUATIONS.some((s) => choices[s.id] === undefined)}
         className="mt-4 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:brightness-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
       >

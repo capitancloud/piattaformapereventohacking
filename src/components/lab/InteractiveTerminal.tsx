@@ -85,12 +85,12 @@ export function InteractiveTerminal({
   );
 }
 
-function TermRow({ line }: { line: { text: string; kind: "out" | "err" | "info" | "prompt" } }) {
+function TermRow({ line, prompt }: { line: { text: string; kind: "out" | "err" | "info" | "prompt" }; prompt: string }) {
   if (line.kind === "prompt")
     return (
       <div className="text-ivory">
-        <span className="text-gold-soft">kali@lab:~$ </span>
-        {line.text.replace("kali@lab:~$ ", "")}
+        <span className="text-gold-soft">{prompt}</span>
+        {line.text.startsWith(prompt) ? line.text.slice(prompt.length) : line.text}
       </div>
     );
   if (line.kind === "err")

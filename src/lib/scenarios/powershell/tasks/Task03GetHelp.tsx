@@ -50,13 +50,10 @@ export default function Task03GetHelp({ markComplete, isComplete }: TaskContext)
       if (!key) return { text: `Get-Help: nessun aiuto per '${target}'`, kind: "err" };
       const body = HELP[key]!;
       const withExamples = /-Examples/i.test(cmd);
-      const lines = withExamples ? body : body.split("\n").filter((l) => !/^EXAMPLES|^\s{4}Get-/.test(l));
-      setHelpReadCount((n) => {
-        const nn = n + 1;
-        if (nn >= 1 && usedGetCommand) markComplete();
-        return nn;
-      });
-      if (usedGetCommand && helpReadCount + 1 >= 1) markComplete();
+      const all = body.split("\n");
+      const lines: string[] = withExamples ? all : all.filter((l) => !/^EXAMPLES|^\s{4}Get-/.test(l));
+      setHelpReadCount(helpReadCount + 1);
+      if (usedGetCommand) markComplete();
       return lines.map((l) => ({ text: l, kind: "out" as const }));
     }
 

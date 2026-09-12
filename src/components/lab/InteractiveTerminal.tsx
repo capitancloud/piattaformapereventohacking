@@ -65,7 +65,7 @@ export function InteractiveTerminal({
         )}
       >
         {history.map((l, i) => (
-          <TermRow key={i} line={l} />
+          <TermRow key={i} line={l} prompt={prompt} />
         ))}
         <form onSubmit={submit} className="mt-2 flex items-center gap-2 text-ivory">
           <span className="text-gold-soft">{prompt}</span>

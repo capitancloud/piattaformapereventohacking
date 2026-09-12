@@ -24,12 +24,13 @@ export default function Task06Permissions({ markComplete, isComplete }: TaskCont
   );
 
   const toggle = (fileIndex: number, who: "owner" | "group" | "others", bit: "r" | "w" | "x") => {
+    const pos = bit === "r" ? 0 : bit === "w" ? 1 : 2;
     setPerms((prev) => {
       const next = [...prev];
       const current = next[fileIndex]![who];
-      const has = current.includes(bit);
-      const updated = has ? current.replace(bit, "-") : current.replace("-", bit);
-      next[fileIndex] = { ...next[fileIndex]!, [who]: updated };
+      const chars = current.split("");
+      chars[pos] = chars[pos] === bit ? "-" : bit;
+      next[fileIndex] = { ...next[fileIndex]!, [who]: chars.join("") };
       return next;
     });
   };

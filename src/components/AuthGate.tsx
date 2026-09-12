@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Lock, LogOut, Terminal } from "lucide-react";
 
-const ACCESS_CODE = "blackmirrorlab";
+const ACCESS_CODE = "hackinglab";
 const STORAGE_KEY = "hackinglab-access";
 const LEGACY_KEY = "cyberlab-access";
 

@@ -7,8 +7,9 @@ import { powershellScenario } from "./powershell";
 import { trafficScenario } from "./traffic";
 import { linuxSecurityScenario } from "./linux-security";
 import { windowsSecurityScenario } from "./windows-security";
+import { cloudSecurityScenario } from "./cloud-security";
 
-export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario];
+export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

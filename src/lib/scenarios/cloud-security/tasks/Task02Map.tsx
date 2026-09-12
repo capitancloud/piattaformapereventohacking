@@ -1,0 +1,13 @@
+import { useState } from "react";
+import { Boxes, Database, Globe2, MapPin, Server } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
+import type { TaskContext } from "../../types";
+import { cn } from "@/lib/utils";
+const NODES=[
+ {id:"global",label:"IAM",scope:"Globale",icon:Globe2,detail:"Utenti e permessi valgono per l'account, non per una singola Availability Zone."},
+ {id:"s3",label:"Bucket S3",scope:"Regione eu-west-1",icon:Database,detail:"I dati risiedono nella Regione scelta, anche se il nome del bucket è unico globalmente."},
+ {id:"ec2a",label:"EC2 web-01",scope:"AZ eu-west-1a",icon:Server,detail:"L'istanza vive in una specifica zona: un guasto di zona può renderla indisponibile."},
+ {id:"ec2b",label:"EC2 web-02",scope:"AZ eu-west-1b",icon:Server,detail:"Una seconda zona riduce la dipendenza da un unico luogo fisico."},
+];
+export default function Task02Map({markComplete,isComplete}:TaskContext){const [seen,setSeen]=useState<string[]>([]);const [selected,setSelected]=useState(0);const inspect=(id:string,i:number)=>{setSelected(i);setSeen(s=>{const n=s.includes(id)?s:[...s,id];if(n.length===NODES.length)markComplete();return n;});};const node=NODES[selected];return <div><div className="overflow-hidden rounded-lg border border-border bg-surface"><div className="flex items-center gap-2 border-b border-border p-4"><Boxes className="text-accent"/><span className="font-semibold">Mappa account AWS · Europa (Irlanda)</span></div><div className="grid gap-4 p-4 lg:grid-cols-[1fr_260px]"><div className="grid gap-3 sm:grid-cols-2">{NODES.map((n,i)=>{const Icon=n.icon;return <Button key={n.id} variant="outline" onClick={()=>inspect(n.id,i)} className={cn("h-auto min-h-24 flex-col items-start whitespace-normal p-4 text-left",selected===i&&"border-accent bg-accent/10",seen.includes(n.id)&&"ring-1 ring-success/50")}><Icon className="mb-2"/><strong>{n.label}</strong><span className="text-xs text-muted-foreground">{n.scope}</span></Button>})}</div><aside className="rounded-lg border border-border bg-background p-4"><MapPin className="mb-3 text-accent"/><p className="text-sm font-semibold">{node?.label}</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{node?.detail}</p><p className="mt-4 font-mono text-xs text-accent">Esplorate {seen.length}/{NODES.length}</p></aside></div></div>{isComplete?<SuccessNote>Hai distinto servizi globali, risorse regionali e risorse legate a una zona. Questa mappa aiuta a progettare disponibilità e controlli.</SuccessNote>:<InfoNote>Apri ogni risorsa. Regione e Availability Zone non sono sinonimi: una Regione contiene più zone separate.</InfoNote>}</div>}

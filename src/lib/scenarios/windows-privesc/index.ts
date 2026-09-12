@@ -32,9 +32,11 @@ export const windowsPrivescScenario: Scenario = {
       goal: "Distinguere quando un'azione è escalation e quando è qualcos'altro",
       brief:
         "La privilege escalation su Windows è passare da un account limitato (utente, service account) ad Administrator o a SYSTEM sulla stessa macchina. Non è entrare da fuori né spostarsi verso altri PC.",
-      details: `Su Windows il livello massimo non è «Administrator» ma «NT AUTHORITY\\SYSTEM»: è l'account con cui gira il kernel e i servizi più critici. Passare da utente normale ad Administrator, o da Administrator a SYSTEM, sono entrambi casi di privesc.
+      details: `Su Windows la gerarchia dei privilegi è diversa da Linux, ma il concetto è lo stesso: partire da un account con pochi diritti e arrivare a uno con molti più diritti sulla stessa macchina. L'utente amministratore locale ha poteri enormi: può installare software, modificare servizi, leggere quasi ogni file, creare altri utenti. Ma esiste un livello ancora più alto: NT AUTHORITY\\SYSTEM, l'account usato dal sistema operativo stesso e da molti servizi critici.
 
-Se invece stai entrando da fuori (per esempio con un exploit RDP) è exploitation; se stai saltando verso un altro host del dominio è movimento laterale.`,
+La privilege escalation su Windows può quindi significare due cose: salire da un utente normale a Administrator locale, oppure salire da Administrator a SYSTEM. Entrambe sono escalation verticale, perché aumenti i tuoi privilegi sulla stessa macchina.
+
+Per distinguerla dalle altre fasi, usa la stessa domanda di sempre: sei già dentro il computer? Stai salendo di livello lì dentro? Se sì, è privesc. Se stai ancora cercando di entrare dall'esterno, per esempio con un exploit su RDP o SMB, è exploitation. Se stai usando le credenziali di una macchina per saltare su un'altra, è movimento laterale.`,
       hint: "Chiediti: sono già sulla macchina? Sto salendo di privilegi lì dentro?",
       explanation: "Sai riconoscere quando un'azione è privilege escalation e quando appartiene a un'altra fase.",
       Simulation: Task01WhatIs,
@@ -45,9 +47,11 @@ Se invece stai entrando da fuori (per esempio con un exploit RDP) è exploitatio
       goal: "Leggere l'output di enumerazione e individuare le anomalie",
       brief:
         "winPEAS è la versione Windows di linpeas: raccoglie decine di controlli locali e colora in rosso ciò che merita attenzione. È il primo passo di ogni privesc.",
-      details: `winPEAS interroga i servizi, i percorsi, le patch mancanti, i privilegi del token, le chiavi di registro sensibili e le credenziali salvate. Nella finestra vedi un output realistico: le righe importanti sono colorate.
+      details: `Prima di provare a salire, devi conoscere il terreno. winPEAS è uno degli strumenti più usati per l'enumerazione locale su Windows: raccoglie in un colpo solo decine di controlli che altrimenti faresti a mano con comandi come sc, reg query, whoami /priv, accesschk e wmic. È la controparte Windows di linpeas.
 
-Clicca le tre righe che rappresentano vere opportunità di privilege escalation e ignora il rumore.`,
+L'output di winPEAS colora le voci in base alla probabilità di essere sfruttabili. Il rosso indica quasi sempre una via di privilege escalation: un servizio con permessi deboli, un percorso non tra virgolette, AlwaysInstallElevato attivo, credenziali in chiaro nel registro, privilegi di token pericolosi. Il giallo è un sospetto da verificare. Il grigio è solo rumore di fondo: versioni di Windows, software installato, utenti locali, patch.
+
+La competenza non sta nel lanciare lo strumento, ma nel saper leggere l'output. Nella simulazione vedrai un estratto realistico. Il tuo compito è cliccare le tre righe che rappresentano vere opportunità di scalata, lasciando stare tutto il resto.`,
       hint: "Guarda ciò che è rosso: AlwaysInstallElevated a 1, servizio con percorso non tra virgolette, credenziali salvate.",
       explanation: "Sai leggere l'output di winPEAS e individuare le voci su cui investigare.",
       Simulation: Task02Winpeas,
@@ -58,9 +62,11 @@ Clicca le tre righe che rappresentano vere opportunità di privilege escalation 
       goal: "Riconoscere quando UAC è un ostacolo aggirabile",
       brief:
         "UAC (User Account Control) chiede conferma prima di eseguire azioni amministrative. Se sei già in un gruppo di amministratori ma con token filtrato, alcuni programmi «auto-elevanti» permettono di saltare la richiesta.",
-      details: `Il caso classico è fodhelper.exe: è firmato Microsoft, si auto-eleva senza mostrare il popup e prima di partire legge una chiave di registro sotto HKCU. Se ci scrivi il comando da eseguire, fodhelper lo lancia con privilegi elevati.
+      details: `UAC, o User Account Control, è il meccanismo che chiede conferma quando un programma tenta di fare qualcosa di amministrativo. Quando sei in un gruppo di amministratori, Windows ti dà un token filtrato: hai i diritti, ma devi esplicitamente confermare per usarli. In teoria dovrebbe fermare molti attacchi, ma in pratica esistono modi di aggirarlo.
 
-Ordina i passaggi del bypass di fodhelper e osserva l'effetto.`,
+Il trucco classico sfrutta programmi firmati Microsoft che si auto-elevano senza mostrare il popup. Un esempio famoso è fodhelper.exe, un eseguibile di sistema legittimo. Prima di avviarsi, fodhelper legge una chiave di registro sotto HKCU\\Software\\Classes\\ms-settings\\Shell\\Open\\command. Se tu, come utente normale, scrivi in quella chiave il comando che vuoi eseguire, fodhelper lo lancerà con privilegi elevati senza chiedere nulla.
+
+Il procedimento è: scrivi il comando nella chiave di registro, imposta DelegateExecute a stringa vuota nella stessa chiave, avvia fodhelper.exe. L'eseguibile legge la chiave e esegue il tuo comando con il token elevato. Nella simulazione dovrai riordinare i quattro passi nella sequenza corretta.`,
       hint: "Prima scrivi la chiave HKCU, poi lanci fodhelper.exe, che legge la chiave e ti dà la shell elevata.",
       explanation: "Hai capito la logica di un UAC bypass: sfruttare programmi firmati che si auto-elevano.",
       Simulation: Task03Uac,
@@ -71,9 +77,11 @@ Ordina i passaggi del bypass di fodhelper e osserva l'effetto.`,
       goal: "Sfruttare un servizio Windows che l'utente può modificare",
       brief:
         "Un servizio Windows gira spesso come SYSTEM. Se un utente normale può cambiarne il binario di avvio (BINARY_PATH_NAME), al prossimo riavvio del servizio Windows eseguirà come SYSTEM il comando scelto dall'utente.",
-      details: `Il comando «sc qc <servizio>» mostra come è configurato un servizio; «sc config» lo modifica. Se i permessi sono scritti male e l'utente ha SERVICE_CHANGE_CONFIG, si punta il binario a un payload proprio e si riavvia il servizio.
+      details: `I servizi Windows sono programmi che girano in background, spesso con l'account SYSTEM, che è il più potente della macchina. Quando un amministratore installa un servizio personalizzato, a volte dimentica di impostare correttamente i permessi. Se un utente normale ha il diritto di modificare la configurazione del servizio, può dire a Windows di eseguire qualsiasi comando al posto del binario originale.
 
-Nel task hai una lista di servizi: scegli quello davvero sfruttabile e componi i tre comandi giusti.`,
+Il comando sc qc NomeServizio mostra la configurazione attuale, incluso il BINARY_PATH_NAME, cioè il percorso dell'eseguibile che Windows lancia. Il comando sc config NomeServizio binPath= "cmd.exe /c ..." cambia quel percorso. Dopo aver modificato il binario, bisogna fermare e riavviare il servizio con sc stop e sc start. Al riavvio, Windows eseguirà il nuovo comando come SYSTEM.
+
+Nella simulazione vedrai tre servizi. Due hanno permessi corretti: gli utenti normali possono solo leggere la configurazione. Il terzo ha un'ACL anomala, con BUILTIN\\Users: FullControl. Quello è il servizio sfruttabile. Dovrai selezionarlo e scegliere i tre comandi giusti tra quelli proposti.`,
       hint: "Cerca il servizio con «BUILTIN\\Users: FullControl». Poi: sc config → sc stop → sc start.",
       explanation: "Sai che un servizio scrivibile dall'utente è una privesc quasi automatica.",
       Simulation: Task04Services,
@@ -84,15 +92,11 @@ Nel task hai una lista di servizi: scegli quello davvero sfruttabile e componi i
       goal: "Riconoscere e sfruttare un unquoted service path",
       brief:
         "Se il percorso di un servizio contiene spazi e NON è tra virgolette, Windows lo interpreta a pezzi. Chi può scrivere in una cartella intermedia può piazzare lì un eseguibile che verrà lanciato al posto del servizio.",
-      details: `Esempio: «C:\\Program Files\\Vulnerable App\\service.exe». Senza virgolette, Windows prova nell'ordine:
+      details: `Su Windows, quando un percorso contiene spazi e non è racchiuso tra virgolette, il sistema lo interpreta a pezzi. Immagina un servizio che ha questo BINARY_PATH_NAME: C:\\Program Files\\Vulnerable App\\service.exe. Senza virgolette, Windows non legge tutto d'un fiato: prova prima a eseguire C:\\Program.exe. Se non lo trova, prova C:\\Program Files\\Vulnerable.exe. Se non lo trova nemmeno quello, infine prova il percorso completo.
 
-  C:\\Program.exe
-  C:\\Program Files\\Vulnerable.exe
-  C:\\Program Files\\Vulnerable App\\service.exe
+Questo comportamento si chiama unquoted service path. Se un utente può scrivere in una cartella intermedia del percorso, può piazzare lì un eseguibile falso con il nome giusto. Al prossimo avvio del servizio, Windows eseguirà il file falso con i privilegi del servizio, spesso SYSTEM.
 
-Se puoi scrivere in C:\\, basta lasciare lì «Program.exe» per farlo eseguire come SYSTEM al riavvio del servizio.
-
-Scegli il file da creare e dove metterlo.`,
+Nel nostro esempio, la prima tappa è C:\\Program.exe. Se riesci a scrivere in C:\\, crei un file chiamato Program.exe che fa ciò che vuoi. Quando il servizio parte, Windows lo lancia al posto del binario vero. Nella simulazione dovrai scegliere quale file falso creare e in quale cartella metterlo, tenendo conto di dove hai i permessi di scrittura.`,
       hint: "L'eseguibile falso deve chiamarsi come il primo pezzo con spazio nel percorso.",
       explanation: "Sai riconoscere un unquoted path e trasformarlo in una privesc.",
       Simulation: Task05UnquotedPath,
@@ -103,9 +107,11 @@ Scegli il file da creare e dove metterlo.`,
       goal: "Sfruttare due chiavi di registro che elevano i pacchetti MSI",
       brief:
         "Se sia HKLM che HKCU hanno «AlwaysInstallElevated = 1», qualsiasi pacchetto .msi installato da un utente normale gira come SYSTEM. È la privesc più semplice esistente su Windows.",
-      details: `Il controllo si fa con «reg query»: entrambe le chiavi devono valere 1. A quel punto basta costruire un MSI malevolo (per esempio con msfvenom) e installarlo con «msiexec /quiet /qn /i shell.msi».
+      details: `AlwaysInstallElevated è una configurazione del registro che dice a Windows: quando un utente installa un pacchetto MSI, eseguilo con privilegi elevati. Esistono due chiavi, una a livello macchina (HKLM) e una a livello utente (HKCU). Perché la privesc funzioni, entrambe devono essere impostate a 1. Se solo una delle due è a 1, il trucco non funziona.
 
-Compila il piano nell'ordine giusto.`,
+Quando entrambe le chiavi sono attive, qualsiasi utente può installare un pacchetto MSI che eseguirà comandi come SYSTEM. Un MSI è semplicemente un pacchetto di installazione: puoi costruirne uno che, invece di installare un programma, apre una shell inversa o aggiunge un utente agli amministratori. Strumenti come msfvenom possono generare un MSI con un payload dentro.
+
+La sequenza corretta è: verifica HKLM, verifica HKCU, crea l'MSI con il payload, installalo con msiexec /quiet /qn /i shell.msi. Le opzioni /quiet e /qn fanno sì che l'installazione avvenga in modo silenzioso, senza finestre. Nella simulazione dovrai riordinare questi quattro passi.`,
       hint: "Prima verifica le due chiavi, poi crea l'MSI, poi lancia msiexec.",
       explanation: "Hai capito perché AlwaysInstallElevated è considerata la privesc più «regalata» di Windows.",
       Simulation: Task06AlwaysInstall,

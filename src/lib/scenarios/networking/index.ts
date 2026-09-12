@@ -17,6 +17,11 @@ export const networkingScenario: Scenario = {
   subtitle: "I mattoncini di ogni rete: IP, MAC, ARP, switch, router, NAT, DNS, porte",
   intro:
     "Prima di attaccare o difendere una rete, devi capirla. In questo scenario esplori — in modo interattivo — i concetti fondamentali su cui poggia ogni comunicazione: indirizzo IP e MAC, subnet, il modo in cui uno switch e un router smistano i pacchetti, come il NAT permette a un intero ufficio di uscire su Internet con un solo IP pubblico, come il DNS traduce i nomi e cosa significa davvero fare un port scan.",
+  highlights: [
+    "I mattoncini di ogni rete, spiegati con simulazioni.",
+    "Classifichi IP, mandi ARP, esplori NAT, DNS, port scan.",
+    "Le basi tecniche indispensabili per ogni attacco successivo.",
+  ],
   category: "Fondamentali",
   difficulty: "Base",
   status: "available",

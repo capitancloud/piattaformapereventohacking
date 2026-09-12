@@ -17,6 +17,11 @@ export const linuxScenario: Scenario = {
   subtitle: "Dal kernel alla shell: impara a muoverti nel sistema operativo degli hacker",
   intro:
     "Linux è il sistema operativo su cui poggia gran parte dell'ethical hacking. In questo scenario scopriamo cos'è il kernel, a cosa servono le distribuzioni e perché Kali Linux è così popolare tra i penetration tester. Poi passiamo alla pratica: shell, navigazione nel filesystem, gestione di file e directory, permessi, utenti, processi e pacchetti. Ogni task è un'esercitazione interattiva nel terminale.",
+  highlights: [
+    "Il kernel, le distribuzioni e il terminale di Kali.",
+    "Comandi per file, permessi, utenti, processi e pacchetti.",
+    "La sicurezza parte da saper muovere il sistema operativo.",
+  ],
   category: "Fondamentali",
   difficulty: "Base",
   status: "available",

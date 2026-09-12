@@ -69,10 +69,16 @@ function Home() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Hacking Lab è una piattaforma di simulazione: ogni scenario ricrea un ambiente
+            Hacking Lab è una piattaforma di simulazione completa: ogni scenario ricrea un ambiente
             vulnerabile e ti guida, passo per passo, ad attaccarlo e a capirne le difese. Zero
             setup, nessun rischio, tutto nel browser.
           </p>
+
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-3 py-1.5 text-xs text-accent backdrop-blur">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            <span className="font-medium">Realizzata in esclusiva da Ethical Hacker Italiani</span>
+          </div>
+
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/modules/$slug"
@@ -91,9 +97,9 @@ function Home() {
           </div>
 
           <div className="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-border/60 pt-8">
-            <Metric value={`${available.length}`} label="Scenari attivi" />
-            <Metric value={`${TOTAL_PLANNED}`} label="Scenari previsti" />
-            <Metric value="100%" label="Ambiente simulato" />
+            <Metric value={`${available.length}`} label="Scenari completi" />
+            <Metric value={`${totalMicroTasks}`} label="Micro-task interattivi" />
+            <Metric value="Italia" label="Made by Ethical Hacker Italiani" />
           </div>
         </div>
 

@@ -60,7 +60,7 @@ Nella scorta troverai anche tre pezzi che una prima scansione prudente non dovre
         "Nmap non vede le porte: invia un pacchetto, osserva cosa torna indietro e da quella reazione deduce uno stato. Le parole open, closed e filtered sono conclusioni, non fotografie.",
       details: `Una risposta SYN/ACK indica un servizio che accetta connessioni. Un RST dice che l'host è vivo ma su quella porta non ascolta nessuno. Il silenzio ripetuto, invece, suggerisce un filtro che scarta i pacchetti senza rispondere, e un messaggio ICMP di divieto lo conferma esplicitamente.
 
-Il caso più insidioso è UDP: molti servizi non rispondono nemmeno quando funzionano, e Nmap è costretto a scrivere open|filtered, cioè «non posso distinguere». Riconoscere questa ambiguità evita conclusioni imbarazzanti nel rapporto finale.`,
+Il caso più insidioso è UDP: molti servizi non rispondono nemmeno quando funzionano, e **Nmap** è costretto a scrivere open|filtered, cioè «non posso distinguere». Riconoscere questa ambiguità evita conclusioni imbarazzanti nel rapporto finale.`,
       hint: "Una risposta esplicita porta a una conclusione netta; il silenzio quasi mai.",
       explanation: "Distingui ciò che il bersaglio ha risposto da ciò che lo strumento ha dedotto.",
       Simulation: Task03States,
@@ -84,9 +84,9 @@ Esiste infine il caso in cui il cliente ti conferma per iscritto che certi host 
       goal: "Capire la differenza fra le due scansioni TCP fondamentali",
       brief:
         "Le due scansioni TCP più usate arrivano allo stesso risultato per strade diverse: una completa la stretta di mano con il servizio, l'altra la interrompe a metà.",
-      details: `Il connect scan usa la normale funzione di connessione del sistema operativo: funziona sempre, non richiede privilegi particolari e attraversa anche i proxy. In cambio, il servizio registra una sessione completa e quindi lascia una riga nei log applicativi.
+      details: `Il connect **scan** usa la normale funzione di connessione del sistema operativo: funziona sempre, non richiede privilegi particolari e attraversa anche i proxy. In cambio, il servizio registra una sessione completa e quindi lascia una riga nei log applicativi.
 
-Il SYN scan costruisce i pacchetti a mano e chiude la conversazione appena ottenuta la risposta. È più rapido e spesso invisibile ai log del singolo servizio, ma richiede privilegi elevati sulla macchina di attacco e resta perfettamente visibile a un firewall o a un sistema di rilevamento. Osserverai entrambe le sequenze animate e poi sceglierai quella adatta a tre situazioni concrete.`,
+Il SYN **scan** costruisce i pacchetti a mano e chiude la conversazione appena ottenuta la risposta. È più rapido e spesso invisibile ai log del singolo servizio, ma richiede privilegi elevati sulla macchina di attacco e resta perfettamente visibile a un firewall o a un sistema di rilevamento. Osserverai entrambe le sequenze animate e poi sceglierai quella adatta a tre situazioni concrete.`,
       hint: "Guarda l'ultimo pacchetto della sequenza e chiediti quali permessi servono per costruirlo.",
       explanation: "Scegli la scansione TCP giusta in base a privilegi disponibili e tracce lasciate.",
       Simulation: Task05SynConnect,
@@ -112,7 +112,7 @@ Esiste poi il vincolo più comune di tutti: la finestra temporale concordata. Se
         "Sapere che la porta 22 è aperta è poco. Sapere quale software risponde, e con quale versione dichiarata, orienta tutte le fasi successive del test.",
       details: `Il rilevamento di versione apre connessioni reali e confronta le risposte con un ampio archivio di firme. Il rilevamento del sistema operativo va oltre: invia pacchetti con combinazioni insolite di flag e interpreta le piccole differenze di comportamento dello stack di rete, restituendo una stima con percentuale di confidenza.
 
-Entrambi producono materiale prezioso e entrambi vanno letti con misura. Un banner può essere stato modificato dall'amministratore, oppure può indicare una versione mai aggiornata nel testo pur essendo stata corretta con una patch. Userai un terminale simulato e poi classificherai quattro affermazioni tratte dall'output.`,
+Entrambi producono materiale prezioso e entrambi vanno letti con misura. Un banner può essere stato modificato dall'amministratore, oppure può indicare una versione mai aggiornata nel testo pur essendo stata corretta con una **patch**. Userai un terminale simulato e poi classificherai quattro affermazioni tratte dall'output.`,
       hint: "Prova sia il rilevamento delle versioni sia quello del sistema operativo, poi rileggi l'output con occhio critico.",
       explanation: "Raccogli versioni e impronte senza confondere una risposta con una certezza.",
       Simulation: Task07Versions,
@@ -125,7 +125,7 @@ Entrambi producono materiale prezioso e entrambi vanno letti con misura. Un bann
         "Il motore di scripting trasforma Nmap in una piccola cassetta degli attrezzi: centinaia di controlli automatici organizzati per categoria, dai più innocui ai più aggressivi.",
       details: `Le categorie sono la prima difesa contro gli errori. Gli script marcati come sicuri si limitano a leggere informazioni che il servizio offre spontaneamente: il titolo di una pagina, un certificato, un messaggio di benvenuto. Quelli intrusivi, invece, tentano credenziali, modificano stati o verificano condizioni di sovraccarico.
 
-Anche una categoria dal nome rassicurante può nascondere sorprese: nel gruppo dedicato alle vulnerabilità convivono controlli passivi e test che possono interrompere un servizio. Comporrai un set adatto a una prima ricognizione autorizzata, escludendo ciò che richiede un mandato separato.`,
+Anche una categoria dal nome rassicurante può nascondere sorprese: nel gruppo dedicato alle **vulnerabilità** convivono controlli passivi e test che possono interrompere un servizio. Comporrai un set adatto a una prima ricognizione autorizzata, escludendo ciò che richiede un mandato separato.`,
       hint: "Includi solo ciò che legge informazioni già offerte dai servizi; lascia fuori credenziali e test di resistenza.",
       explanation: "Hai costruito un set di script informativo e proporzionato al mandato.",
       Simulation: Task08Nse,
@@ -149,7 +149,7 @@ Esiste anche l'opzione che produce tutti e tre i file con lo stesso nome base: c
       goal: "Ordinare i risultati per rischio e proporre un passo autorizzato",
       brief:
         "Alla fine della scansione hai un elenco di porte aperte. Il valore del tuo lavoro sta nel trasformarlo in poche righe che dicono al cliente da dove cominciare e perché.",
-      details: `Una priorità alta si giustifica con due elementi insieme: il servizio offre un accesso diretto o custodisce dati, e l'evidenza raccolta è solida. Un banner che suggerisce una versione antica è interessante, ma resta un banner: va segnalato come da verificare, non come vulnerabilità confermata.
+      details: `Una priorità alta si giustifica con due elementi insieme: il servizio offre un accesso diretto o custodisce dati, e l'evidenza raccolta è solida. Un banner che suggerisce una versione antica è interessante, ma resta un banner: va segnalato come da verificare, non come **vulnerabilità** confermata.
 
 Allo stesso modo, un sito pubblico che rimanda alla versione cifrata è semplicemente un sistema configurato bene. Riempire il rapporto di segnalazioni irrilevanti fa perdere credibilità tanto quanto tralasciarne una importante. Chiuderai assegnando le priorità e scegliendo il prossimo passo da proporre al referente.`,
       hint: "Alza la priorità per accessi remoti e database esposti; resta prudente dove hai solo un banner.",

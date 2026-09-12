@@ -40,7 +40,10 @@ export default function Task06Permissions({ markComplete, isComplete }: TaskCont
     return p.owner === f.target.owner && p.group === f.target.group && p.others === f.target.others;
   });
 
+  const [tried, setTried] = useState(false);
+
   const verify = () => {
+    setTried(true);
     if (allRight) markComplete();
   };
 
@@ -58,13 +61,16 @@ export default function Task06Permissions({ markComplete, isComplete }: TaskCont
                 <div key={who} className="rounded-md border border-border bg-background p-3">
                   <div className="mb-2 text-xs uppercase tracking-widest text-accent">{who}</div>
                   <div className="mb-2 font-mono text-sm text-foreground">
-                    {perms[i]![who]} — {PERM_LABELS[perms[i]![who]]}
+                    {perms[i]![who]} — {permLabel(perms[i]![who])}
                   </div>
                   <div className="flex gap-2">
                     {(["r", "w", "x"] as const).map((bit) => (
                       <button
                         key={bit}
-                        onClick={() => toggle(i, who, bit)}
+                        onClick={() => {
+                          toggle(i, who, bit);
+                          setTried(false);
+                        }}
                         className={cn(
                           "h-8 w-8 rounded-md border text-xs font-mono transition",
                           perms[i]![who].includes(bit)
@@ -83,12 +89,17 @@ export default function Task06Permissions({ markComplete, isComplete }: TaskCont
         ))}
       </div>
 
-      <button
-        onClick={verify}
-        className="mt-4 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:brightness-110 active:scale-95"
-      >
-        Verifica permessi
-      </button>
+      <div className="mt-4 flex flex-wrap items-center gap-4">
+        <button
+          onClick={verify}
+          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:brightness-110 active:scale-95"
+        >
+          Verifica permessi
+        </button>
+        {tried && !isComplete && (
+          <span className="text-sm text-destructive">Alcuni permessi non sono corretti. Controlla gli obiettivi.</span>
+        )}
+      </div>
 
       {isComplete && (
         <SuccessNote>

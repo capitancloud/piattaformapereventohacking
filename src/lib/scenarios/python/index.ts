@@ -31,126 +31,120 @@ export const pythonScenario: Scenario = {
       title: "Cos'è Python?",
       goal: "Capire cos'è un linguaggio interpretato",
       brief:
-        "Python è un linguaggio di programmazione interpretato: scrivi codice in un file .py e l'interprete lo esegue riga per riga.",
+        "Python è un linguaggio di programmazione amatissimo perché è semplice da leggere e scrivere. È un linguaggio interpretato, il che significa che il computer esegue le tue istruzioni riga per riga senza bisogno di passaggi intermedi complessi.",
       details:
-        "A differenza di linguaggi compilati come C, non serve un passaggio di compilazione: l'interprete Python legge il tuo file e lo esegue direttamente. Questo lo rende veloce da scrivere e testare.\n\nÈ un linguaggio a tipizzazione dinamica: non devi dichiarare che una variabile è un numero o una stringa, lo capisce da solo. Ed è famoso per la sintassi pulita: niente parentesi graffe, l'indentazione è parte della grammatica.",
-      hint: "Ordina il flusso: prima scrivi il codice, poi l'interprete lo legge, infine il computer esegue.",
+        "Quando scrivi in Python, crei dei file di testo chiamati script che contengono comandi. A differenza di linguaggi più complessi che richiedono una 'compilazione' lunga, Python usa un interprete che legge e dà vita al tuo codice immediatamente.\n\nQuesta caratteristica lo rende perfetto per chi inizia, perché puoi testare piccoli pezzi di codice in tempo reale e vedere subito cosa succede. È un linguaggio estremamente flessibile che viene usato tanto dai principianti quanto dai professionisti della sicurezza informatica per automatizzare compiti ripetitivi.\n\nNella simulazione di oggi, vedrai in azione il legame tra il codice che scrivi e l'interprete. Dovrai ordinare le fasi del processo di esecuzione per capire bene come il tuo computer comunica con il linguaggio Python.",
+      hint: "Ricorda: prima scrivi le istruzioni, poi l'interprete le legge e infine il computer le esegue.",
       explanation:
-        "Con Python il ciclo scrivi → esegui → correggi è velocissimo: è il motivo per cui è così popolare tra chi impara e tra chi automatizza.",
+        "Ora sai come Python prende vita sul tuo computer. Comprendere questo meccanismo di esecuzione è il primo passo fondamentale per diventare un programmatore consapevole.",
       Simulation: Task01WhatIs,
     },
     {
       id: "02-variabili-tipi",
       title: "Variabili e tipi",
       goal: "Riconoscere int, float, str, bool",
-      brief: "Una variabile è un nome a cui assegni un valore. Python capisce il tipo da solo.",
+      brief: "Le variabili sono come delle piccole scatole con un'etichetta dove conservi le tue informazioni. Python è intelligente e capisce da solo che tipo di dato stai inserendo nella scatola.",
       details:
-        "eta = 30 crea una variabile intera. prezzo = 9.90 è un float (numero con virgola). nome = \"Ada\" è una stringa. attivo = True è un booleano.\n\nNon devi dichiarare il tipo: Python lo deduce dal valore. Puoi anche cambiarlo strada facendo, ma di solito non è una buona idea.",
-      hint: "Trascina ogni valore nella casella del tipo giusto.",
+        "Immagina di voler memorizzare l'età di una persona, il prezzo di un prodotto o un semplice saluto. In Python, assegni un nome a un valore e il linguaggio capisce se si tratta di un numero intero (int), un numero con la virgola (float), una parola (str) o un valore di verità (bool).\n\nNon c'è bisogno di scrivere codice complicato per definire il tipo, basta scrivere il nome, il segno uguale e il valore. Questa semplicità ti permette di concentrarti sulla logica del tuo script invece che sulla sintassi rigida di altri linguaggi.\n\nNella simulazione, dovrai associare correttamente i diversi tipi di dati ai valori corrispondenti. Questo esercizio ti aiuterà a memorizzare come Python classifica le informazioni che gestirai quotidianamente nei tuoi programmi.",
+      hint: "Trascina ogni valore nella categoria che pensi sia la più adatta.",
       explanation:
-        "int, float, str, bool sono i tipi primitivi più usati. Tutto il resto (liste, dizionari, oggetti) è costruito sopra di loro.",
+        "Hai imparato a distinguere i quattro tipi di dati fondamentali. Questi sono i mattoni con cui costruirai ogni futuro programma, dalla più piccola funzione al più complesso script di attacco.",
       Simulation: Task02Types,
     },
     {
       id: "03-print-input",
       title: "print e input",
       goal: "Stampare a schermo e leggere dall'utente",
-      brief: "print scrive. input legge una risposta dall'utente.",
+      brief: "Per comunicare con il tuo programma, userai due comandi magici: print per inviare messaggi a chi lo usa e input per ricevere risposte da lui.",
       details:
-        "print(\"Ciao\") stampa Ciao a schermo. nome = input(\"Come ti chiami? \") mostra la domanda e aspetta la risposta, poi la salva nella variabile nome.\n\nAttenzione: input restituisce sempre una stringa. Se vuoi un numero devi convertirlo con int() o float().",
-      hint: "Prova a scrivere un piccolo dialogo: chiedi un nome e poi salutalo con print.",
+        "Il comando print() prende ciò che metti tra le parentesi e lo mostra sullo schermo, rendendolo leggibile per l'utente. D'altra parte, input() ferma l'esecuzione dello script, pone una domanda all'utente e attende che lui scriva qualcosa sulla tastiera.\n\nRicorda sempre che tutto ciò che viene inserito tramite input viene trattato come una parola (stringa). Se ti serve un numero, dovrai convertirlo manualmente, altrimenti Python lo leggerà come semplice testo e non potrai farci dei calcoli.\n\nNel compito di oggi, creerai un piccolo programma interattivo. Dovrai combinare print e input per costruire un dialogo che interagisce davvero con chi sta davanti allo schermo.",
+      hint: "Prova a creare un piccolo dialogo: chiedi all'utente il suo nome e poi usa print per rispondergli.",
       explanation:
-        "print e input sono i mattoni base di ogni script interattivo. Semplici ma potentissimi.",
+        "Adesso sai come rendere i tuoi script bidirezionali. La capacità di ricevere input e inviare output è essenziale per qualsiasi strumento utile, inclusi quelli di hacking che dovrai analizzare.",
       Simulation: Task03PrintInput,
     },
     {
       id: "04-stringhe-fstring",
       title: "Stringhe e f-string",
       goal: "Comporre stringhe con variabili",
-      brief:
-        "Le f-string sono il modo moderno per unire testo e variabili in Python.",
+      brief: "Le f-string sono un modo moderno e potentissimo per creare messaggi che includono informazioni dinamiche salvate nelle tue variabili.",
       details:
-        "Una f-string comincia con la lettera f prima delle virgolette: f\"Ciao {nome}, hai {eta} anni\". Dentro le graffe puoi mettere qualsiasi espressione: variabili, calcoli, chiamate a funzione.\n\nÈ più leggibile e veloce della vecchia concatenazione con il +.",
-      hint: "Componi la frase inserendo {nome} e {eta} nei punti giusti.",
+        "Invece di unire pezzi di testo con segni complicati, metti una lettera f davanti alle virgolette. Poi, puoi inserire le tue variabili direttamente dentro il testo usando le parentesi graffe.\n\nQuesto approccio rende il tuo codice incredibilmente leggibile e pulito. Puoi inserire non solo variabili, ma anche semplici calcoli o risultati di altre funzioni, rendendo i tuoi messaggi dinamici e pronti per qualsiasi situazione.\n\nNella sfida, dovrai comporre una frase complessa inserendo correttamente i dati presi dalle variabili. Vedrai come questo metodo semplifichi drasticamente la gestione del testo nei tuoi script.",
+      hint: "Non dimenticare la f davanti alle virgolette e usa le parentesi graffe per racchiudere le variabili.",
       explanation:
-        "Le f-string (introdotte in Python 3.6) sono lo standard moderno per formattare stringhe: leggibili, veloci, sicure.",
+        "Hai imparato il modo più moderno ed efficace per gestire il testo in Python. Le f-string sono uno strumento indispensabile per rendere i tuoi output chiari e professionali.",
       Simulation: Task04Strings,
     },
     {
       id: "05-liste",
       title: "Liste",
       goal: "Creare, aggiungere, rimuovere elementi",
-      brief: "Una lista contiene più valori in ordine, tra parentesi quadre.",
+      brief: "Una lista è un contenitore ordinato che ti permette di salvare molti elementi insieme, come se fosse una lista della spesa digitale.",
       details:
-        "frutta = [\"mela\", \"pera\", \"banana\"] è una lista di tre stringhe. Puoi leggere l'elemento con frutta[0] (il primo), aggiungere con frutta.append(\"kiwi\"), rimuovere con frutta.remove(\"pera\") e contare con len(frutta).\n\nGli indici partono da 0: è una convenzione che vale in quasi tutti i linguaggi.",
-      hint: "Aggiungi qualche frutto, poi provane a rimuovere uno.",
+        "Invece di creare una variabile per ogni cosa, usi una lista tra parentesi quadre. Puoi aggiungere nuovi elementi, rimuovere quelli che non ti servono più o contare quanti ce ne sono in totale con pochissime righe di codice.\n\nUna regola importante: in informatica si conta spesso partendo da zero. Quindi, il primo elemento della tua lista si trova all'indice 0, il secondo all'indice 1 e così via.\n\nIn questa esercitazione, manipolerai una lista di elementi. Dovrai aggiungere oggetti, eliminarne altri e capire come accedere esattamente a quello che ti serve in base alla sua posizione.",
+      hint: "Ricorda che il primo elemento è all'indice 0. Prova ad aggiungere un elemento e poi a rimuoverne uno.",
       explanation:
-        "Le liste sono la struttura dati più usata in Python: sequenze ordinate, modificabili, di qualunque tipo.",
+        "Le liste sono fondamentali per gestire grandi quantità di dati. Grazie a loro, il tuo codice diventa capace di gestire collezioni di informazioni in modo ordinato ed efficiente.",
       Simulation: Task05Lists,
     },
     {
       id: "06-dizionari",
       title: "Dizionari",
       goal: "Associare chiavi a valori",
-      brief:
-        "Un dizionario è un insieme di coppie chiave → valore, tra parentesi graffe.",
+      brief: "I dizionari servono quando vuoi associare informazioni a etichette specifiche, come una rubrica dove il nome è la chiave e il numero di telefono è il valore.",
       details:
-        "persona = {\"nome\": \"Ada\", \"eta\": 30} contiene due coppie. Leggi con persona[\"nome\"], aggiungi con persona[\"citta\"] = \"Roma\", elimini con del persona[\"eta\"].\n\nUsi i dizionari ogni volta che hai bisogno di descrivere un oggetto con più attributi.",
-      hint: "Aggiungi le coppie chiave-valore mancanti per completare la scheda.",
+        "Mentre la lista è perfetta per una serie di dati, il dizionario brilla quando vuoi descrivere un oggetto complesso con diverse caratteristiche. Ogni elemento è composto da una chiave (l'etichetta) e da un valore (l'informazione vera).\n\nPuoi facilmente leggere il valore associato a una chiave, aggiungere nuove caratteristiche all'oggetto o rimuovere quelle inutili. È un metodo molto potente per organizzare dati che devono essere cercati rapidamente.\n\nNella simulazione, dovrai costruire un dizionario descrivendo un oggetto. Assicurati di accoppiare correttamente ogni etichetta con il dato giusto per completare il quadro.",
+      hint: "Usa le parentesi graffe e ricorda che ogni dato ha la sua etichetta, chiamata chiave.",
       explanation:
-        "Dizionari e liste sono i due pilastri dei dati in Python: liste per sequenze ordinate, dizionari per associazioni chiave-valore.",
+        "Ora sai come strutturare dati complessi usando i dizionari. Questa competenza ti permette di organizzare le informazioni proprio come farebbe un vero database in miniatura.",
       Simulation: Task06Dicts,
     },
     {
       id: "07-if-else",
       title: "if / elif / else",
       goal: "Prendere decisioni nel codice",
-      brief:
-        "Se una condizione è vera fai una cosa, altrimenti un'altra. elif aggiunge un ramo intermedio.",
+      brief: "Le strutture di controllo permettono al tuo programma di prendere decisioni autonome: se succede una cosa, fai questo; altrimenti, fai quello.",
       details:
-        "if eta >= 18: print(\"maggiorenne\")\\nelif eta >= 14: print(\"adolescente\")\\nelse: print(\"minore\")\n\nOcchio all'indentazione: in Python i blocchi non sono racchiusi da graffe, ma definiti dagli spazi (di solito 4).",
-      hint: "Muovi lo slider dell'età e osserva quale ramo si accende.",
+        "Con if (se), elif (altrimenti se) ed else (altrimenti), crei dei bivi logici. Il programma controlla una condizione: se è vera, esegue un blocco di codice, altrimenti passa al prossimo controllo.\n\nIn Python, l'indentazione (gli spazi vuoti prima del codice) è sacra. È quella che dice al programma quali istruzioni appartengono a quale blocco decisionale, quindi fai molta attenzione agli spazi!\n\nNella sfida, simulerai un processo decisionale. Muovi lo slider e osserva come il tuo codice cambia comportamento in base al valore dell'età, imparando a gestire diversi scenari con un'unica struttura.",
+      hint: "Attenzione agli spazi: in Python l'indentazione corretta è obbligatoria per far funzionare i blocchi.",
       explanation:
-        "if/elif/else è la struttura di controllo base di ogni linguaggio. Con Python l'indentazione è parte della grammatica.",
+        "Hai imparato a dare intelligenza al codice. Grazie alle condizioni, i tuoi script non sono più sequenze fisse, ma veri e propri programmi capaci di adattarsi alla situazione.",
       Simulation: Task07IfElse,
     },
     {
       id: "08-cicli",
       title: "Cicli for e while",
       goal: "Ripetere blocchi di codice",
-      brief:
-        "for scorre una sequenza. while ripete finché una condizione è vera.",
+      brief: "I cicli ti salvano dalla noia di scrivere lo stesso codice più volte, permettendoti di ripetere azioni automaticamente finché non hai finito.",
       details:
-        "for nome in nomi: print(nome) stampa ogni elemento della lista.\n\nfor i in range(5): print(i) stampa i numeri da 0 a 4.\n\nwhile x < 10: x += 1 continua finché x è minore di 10. Attenzione ai loop infiniti: la condizione deve prima o poi diventare falsa.",
-      hint: "Scegli quanti giri fare e osserva il ciclo animarsi passo per passo.",
+        "Il ciclo for è perfetto quando sai già quante volte devi ripetere un'azione, ad esempio scorrere tutti gli elementi di una lista. Il ciclo while, invece, continua a ripetere finché una condizione rimane vera, ideale quando non conosci la durata a priori.\n\nBisogna fare molta attenzione a non creare cicli infiniti che non finiscono mai e bloccano il computer! Assicurati sempre che la condizione di uscita sia raggiungibile.\n\nNella simulazione, sperimenterai entrambi i cicli. Dovrai impostare il numero di ripetizioni o la condizione di stop per far completare il compito al programma senza errori.",
+      hint: "Scegli bene il tipo di ciclo: for se conosci il limite, while se devi controllare una condizione.",
       explanation:
-        "for e while sono le due forme di iterazione: for quando sai su cosa iterare, while quando la fine dipende da una condizione.",
+        "I cicli sono il motore dell'automazione. Saperli usare significa passare dal fare le cose a mano al lasciare che sia il computer a lavorare per te.",
       Simulation: Task08Loops,
     },
     {
       id: "09-funzioni",
       title: "Funzioni con def",
       goal: "Definire e chiamare una funzione",
-      brief:
-        "Una funzione è un blocco di codice riutilizzabile che riceve input e restituisce un risultato.",
+      brief: "Le funzioni sono blocchi di codice riutilizzabili che ti permettono di dare un nome a un compito complesso e chiamarlo ogni volta che ti serve.",
       details:
-        "def saluta(nome):\\n    return f\"Ciao {nome}\"\n\nDopo la definizione puoi chiamarla quante volte vuoi: saluta(\"Ada\"), saluta(\"Marco\"). Il return è il valore che la funzione restituisce a chi l'ha chiamata.\n\nLe funzioni evitano di ripetere codice e rendono il programma più leggibile.",
-      hint: "Definisci una funzione somma(a, b) che restituisce a + b, poi chiamala con due numeri.",
+        "Invece di copiare e incollare lo stesso codice in posti diversi, lo racchiudi in una funzione definita con la parola chiave def. Puoi passare alla funzione degli input (argomenti) e farti restituire un risultato tramite il comando return.\n\nQuesto rende il tuo programma molto più pulito, facile da leggere e semplice da riparare in caso di bug. È il primo passo fondamentale verso la scrittura di software professionale.\n\nNel compito di oggi, definirai la tua prima funzione per eseguire un calcolo. Una volta definita, la richiamerai più volte per vedere come semplifica la gestione del lavoro.",
+      hint: "Usa def per creare la funzione e return per restituire il risultato del tuo calcolo.",
       explanation:
-        "Le funzioni sono il primo passo verso il codice organizzato: ogni cosa che fai più di una volta merita di diventare una funzione.",
+        "Le funzioni sono il segreto per scrivere programmi puliti e modulari. Ora che sai come crearle, sei pronto a costruire script molto più ambiziosi.",
       Simulation: Task09Functions,
     },
     {
       id: "10-quiz",
       title: "Quiz finale — 10 domande",
       goal: "Consolidare le basi di Python",
-      brief:
-        "Dieci domande veloci su variabili, tipi, stringhe, liste, dizionari, condizioni, cicli e funzioni.",
+      brief: "È arrivato il momento di mettere alla prova quello che hai imparato. Dieci domande veloci per vedere se hai interiorizzato i concetti fondamentali.",
       details:
-        "Domande semplici e concrete. Se sbagli qualcosa non è grave: torna al task corrispondente e riprova.",
-      hint: "Ricorda: indentazione, tipi primitivi, differenza fra lista e dizionario.",
+        "Non preoccuparti del punteggio perfetto, l'importante è capire dove sono le tue incertezze. Se sbagli una risposta, prendila come un segnale per rileggere la spiegazione di quel task specifico.\n\nIl quiz copre tutto ciò che abbiamo visto: dalle variabili alle funzioni, passando per liste e cicli. È un modo ottimo per fissare i concetti prima di passare a sfide più avanzate.\n\nConcentrati, leggi bene le domande e usa tutto quello che hai imparato finora. Buona fortuna con il test finale!",
+      hint: "Fai un bel respiro e ricorda: indentazione, tipi di dati e la differenza tra lista e dizionario sono la chiave.",
       explanation:
-        "Con queste basi puoi già leggere codice Python di altri e scriverne di tuo. Il resto viene con la pratica.",
+        "Congratulazioni! Con questo quiz hai completato il primo scenario. Hai le fondamenta giuste per approfondire Python e iniziare il tuo viaggio nell'ethical hacking.",
       Simulation: Task10Quiz,
     },
   ],

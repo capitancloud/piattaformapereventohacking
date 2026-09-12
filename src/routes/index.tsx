@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lock, RotateCcw, Terminal, Zap, Target, ShieldCheck, Rocket, Sparkles } from "lucide-react";
+import { ArrowUpRight, Lock, RotateCcw, Terminal, Zap, Target, ShieldCheck, Rocket, Sparkles, AlertTriangle } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";

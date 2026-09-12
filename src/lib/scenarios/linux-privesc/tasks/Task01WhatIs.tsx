@@ -54,6 +54,9 @@ export default function Task01WhatIs({ markComplete, isComplete }: TaskContext) 
 
   return (
     <div>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        La privilege escalation è come trovare una scala nascosta dentro un palazzo in cui sei già entrato. Non devi più forzare porte dall'esterno: devi solo salire. Leggi ogni situazione e decidi se si tratta di una vera scalata di privilegi, oppure di exploitation o movimento laterale.
+      </p>
       <div className="grid min-w-0 gap-3 sm:grid-cols-2">
         {ACTIONS.map((a) => {
           const value = picked[a.id];

@@ -32,6 +32,9 @@ export default function Task02Linpeas({ markComplete, isComplete }: TaskContext)
 
   return (
     <div>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        linpeas è uno strumento di enumerazione automatica. Il suo output è lungo e colorato: il rosso indica una via di privilege escalation molto probabile, il giallo un sospetto, il grigio solo contesto. Clicca le tre righe rosse che rappresentano vere opportunità di scalata.
+      </p>
       <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-black shadow-2xl shadow-black/60">
         <div className="flex items-center gap-2 border-b border-border/60 bg-surface-2 px-3 py-2 text-xs">
           <div className="flex gap-1.5">

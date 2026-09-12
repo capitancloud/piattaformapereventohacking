@@ -35,6 +35,9 @@ export default function Task02Winpeas({ markComplete, isComplete }: TaskContext)
 
   return (
     <div>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        winPEAS raccoglie decine di controlli locali e colora le anomalie. Le righe con «[!]» in rosso sono le più calde: servizi mal configurati, percorsi non tra virgolette, credenziali salvate, chiavi di registro pericolose. Clicca le tre righe che rappresentano vere opportunità di privilege escalation.
+      </p>
       <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-black p-4 font-mono text-[12px] leading-relaxed">
         <div className="mb-2 text-xs uppercase tracking-widest text-gold-soft">winPEAS.exe — output (clicca le righe davvero sospette)</div>
         <div className="space-y-1">

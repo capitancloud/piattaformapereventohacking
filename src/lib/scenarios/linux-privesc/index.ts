@@ -62,9 +62,11 @@ La vera abilità non è lanciare lo script, ma imparare a filtrare il rumore. Ne
       goal: "Riconoscere quali comandi sudo permettono davvero di diventare root",
       brief:
         "«sudo -l» dice cosa puoi lanciare come root senza password. Alcuni comandi innocui in apparenza (find, vim, less, awk) ti danno una shell root in una riga. Altri no.",
-      details: `Il progetto GTFOBins raccoglie decine di binari «normali» che, se autorizzati via sudo, permettono di eseguire codice arbitrario come root. Il motivo è che quei comandi hanno funzioni interne (aprire una shell, eseguire un comando esterno, invocare un editor) che sudo non filtra: se puoi lanciare «sudo find», puoi anche fare «sudo find . -exec /bin/sh \\;».
+      details: `Quando un amministratore configura male sudo, può trasformare un comando innocuo in una porta diretta per root. Il comando «sudo -l» elenca tutto ciò che l'utente corrente può eseguire come root, spesso senza nemmeno digitare password. La maggior parte di questi comandi è pensata per compiti limitati: leggere un log, cercare un file, modificare un messaggio del giorno. Ma alcuni nascondono funzioni molto più potenti.
 
-Qui hai sei comandi che sudo ti permette di eseguire senza password. Per ciascuno scegli se ti porta a root oppure no.`,
+GTFOBins è un sito di riferimento che raccoglie queste scorciatoie. Per esempio, find ha l'opzione -exec che esegue un altro comando. Se puoi lanciare sudo find, puoi anche lanciare sudo find . -exec /bin/sh \\; -quit: find girerà come root e ti aprirà una shell come root. Lo stesso vale per vim, less, awk e molti altri: hanno tutti un modo per lanciare comandi esterni.
+
+In questo task vedrai sei comandi autorizzati via sudo. Devi decidere, per ciascuno, se permette davvero di diventare root oppure no. La differenza sta sempre nella stessa domanda: questo comando può eseguire altri comandi o aprire una shell?`,
       hint: "I comandi con «esci in shell» (find -exec, vim :!sh, less !sh, awk 'BEGIN{system(...)}') sono sempre pericolosi.",
       explanation: "Sai quali binari, se autorizzati via sudo, diventano una scorciatoia verso root.",
       Simulation: Task03Sudo,

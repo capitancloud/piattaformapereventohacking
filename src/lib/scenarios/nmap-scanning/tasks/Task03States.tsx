@@ -9,7 +9,7 @@ type State = "open" | "closed" | "filtered" | "open|filtered";
 
 const STATES: { id: State; label: string; color: string }[] = [
   { id: "open", label: "open", color: "border-success/60 bg-success/10 text-success" },
-  { id: "closed", label: "closed", color: "border-border bg-background text-muted-foreground" },
+  { id: "closed", label: "closed", color: "border-ivory/60 bg-ivory/10 text-ivory" },
   { id: "filtered", label: "filtered", color: "border-destructive/50 bg-destructive/10 text-destructive" },
   { id: "open|filtered", label: "open|filtered", color: "border-gold/50 bg-gold/10 text-gold" },
 ];

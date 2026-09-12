@@ -46,10 +46,22 @@ function Home() {
             Hacking<span className="text-accent">Lab</span>
           </span>
         </Link>
-        <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#scenari" className="transition hover:text-foreground">Scenari</a>
-          <a href="#come-funziona" className="transition hover:text-foreground">Come funziona</a>
-        </nav>
+        <div className="flex items-center gap-4 md:gap-6">
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/60 bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-300 shadow-sm shadow-amber-400/20"
+            title="La piattaforma è in fase Beta: potresti trovare imprecisioni o malfunzionamenti."
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-400" />
+            </span>
+            Beta
+          </span>
+          <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
+            <a href="#scenari" className="transition hover:text-foreground">Scenari</a>
+            <a href="#come-funziona" className="transition hover:text-foreground">Come funziona</a>
+          </nav>
+        </div>
       </header>
 
       {/* Hero */}

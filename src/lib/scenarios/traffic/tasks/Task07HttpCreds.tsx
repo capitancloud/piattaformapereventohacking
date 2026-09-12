@@ -31,13 +31,13 @@ export default function Task07HttpCreds({ markComplete, isComplete }: TaskContex
 
   return (
     <div>
-      <div className="grid gap-4 md:grid-cols-[1fr_260px]">
-        <div className="overflow-hidden rounded-xl border border-border bg-surface">
+      <div className="grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface">
           <div className="flex items-center gap-2 border-b border-border bg-surface-2 px-3 py-2 font-mono text-[11px] text-muted-foreground">
             <span className="rounded bg-destructive/20 px-2 py-0.5 text-[10px] text-destructive">HTTP (in chiaro)</span>
             packet 42 · POST /login
           </div>
-          <pre className="whitespace-pre-wrap bg-black/60 p-4 font-mono text-[12px] leading-relaxed text-ivory">{REQ}</pre>
+          <pre className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] bg-black/60 p-4 font-mono text-[12px] leading-relaxed text-ivory">{REQ}</pre>
         </div>
 
         <div className="rounded-xl border border-border bg-surface p-4">

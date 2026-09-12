@@ -38,19 +38,19 @@ export default function Task05Args({ markComplete, isComplete }: TaskContext) {
             <FileCode2 className="h-4 w-4 text-accent" />
             <span className="font-mono text-xs text-muted-foreground">saluta.sh</span>
           </div>
-          <pre className="bg-black/60 p-4 font-mono text-sm text-ivory">{SCRIPT}</pre>
+          <pre className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] bg-black/60 p-4 font-mono text-sm text-ivory">{SCRIPT}</pre>
         </div>
 
         <div className="rounded-xl border border-border bg-surface p-4">
           <div className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">Lancia lo script con argomenti</div>
-          <div className="mb-3 rounded-md border border-border bg-black/60 px-3 py-2 font-mono text-sm">
-            <span className="text-gold-soft">kali@lab:~$ </span>
-            <span>./saluta.sh </span>
+          <div className="mb-3 grid min-w-0 grid-cols-[auto_auto_minmax(0,1fr)] items-center rounded-md border border-border bg-black/60 px-3 py-2 font-mono text-sm">
+            <span className="whitespace-nowrap text-gold-soft">kali@lab:~$ </span>
+            <span className="whitespace-nowrap">./saluta.sh </span>
             <input
               value={args}
               onChange={(e) => setArgs(e.target.value)}
               placeholder="Ada Lovelace"
-              className="w-40 bg-transparent text-ivory outline-none placeholder:text-muted-foreground/50"
+              className="min-w-0 w-full bg-transparent text-ivory outline-none placeholder:text-muted-foreground/50"
             />
           </div>
           <button
@@ -64,7 +64,7 @@ export default function Task05Args({ markComplete, isComplete }: TaskContext) {
           {out.length > 0 && (
             <div className="mt-4 rounded-md border border-border bg-black/70 p-3 font-mono text-sm animate-in fade-in slide-in-from-bottom-2">
               {out.map((l, i) => (
-                <div key={i} className="text-ivory">{l}</div>
+                <div key={i} className="break-words [overflow-wrap:anywhere] text-ivory">{l}</div>
               ))}
             </div>
           )}

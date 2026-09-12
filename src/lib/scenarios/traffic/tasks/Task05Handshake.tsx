@@ -97,7 +97,7 @@ export default function Task05Handshake({ markComplete, isComplete }: TaskContex
           ))}
         </ol>
 
-        <div className="relative h-24 rounded-md border border-border bg-black/50 p-3">
+        <div className="relative min-h-[118px] overflow-x-auto rounded-md border border-border bg-black/50 p-3">
           <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
             <span>Client 10.0.0.10</span>
             <span>Server 10.0.0.20</span>

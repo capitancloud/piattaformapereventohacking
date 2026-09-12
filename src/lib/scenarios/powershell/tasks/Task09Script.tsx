@@ -50,8 +50,8 @@ export default function Task09Script({ markComplete, isComplete }: TaskContext) 
 
   return (
     <div>
-      <div className="grid gap-4 md:grid-cols-[1fr_260px]">
-        <div className="overflow-hidden rounded-xl border border-border bg-surface">
+      <div className="grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface">
           <div className="flex items-center gap-2 border-b border-border bg-surface-2 px-3 py-2">
             <FileCode2 className="h-4 w-4 text-accent" />
             <span className="font-mono text-xs text-muted-foreground">saluta.ps1</span>
@@ -91,9 +91,9 @@ export default function Task09Script({ markComplete, isComplete }: TaskContext) 
             </button>
           </div>
           {output !== null && (
-            <div className="border-t border-border bg-black p-3 font-mono text-sm">
-              <div className="text-gold-soft">PS C:\Lab&gt; .\saluta.ps1 -nome {runArg}</div>
-              <div className={cn("whitespace-pre-wrap", output.startsWith("errore") || output.startsWith("PS>") ? "text-destructive" : "text-ivory")}>{output}</div>
+            <div className="min-w-0 border-t border-border bg-black p-3 font-mono text-sm">
+              <div className="break-all text-gold-soft">PS C:\Lab&gt; .\saluta.ps1 -nome {runArg}</div>
+              <div className={cn("whitespace-pre-wrap break-words [overflow-wrap:anywhere]", output.startsWith("errore") || output.startsWith("PS>") ? "text-destructive" : "text-ivory")}>{output}</div>
             </div>
           )}
         </div>

@@ -45,7 +45,7 @@ export default function Task07ForEach({ markComplete, isComplete }: TaskContext)
           Genera N nomi di server usando la pipeline
         </div>
 
-        <div className="mb-4 rounded-md border border-border bg-black/60 p-3 font-mono text-sm">
+        <div className="mb-4 min-w-0 break-words [overflow-wrap:anywhere] rounded-md border border-border bg-black/60 p-3 font-mono text-sm">
           <span className="text-gold-soft">PS&gt;</span>{" "}
           <span className="text-ivory">1..</span>
           <span className="text-accent">{n}</span>

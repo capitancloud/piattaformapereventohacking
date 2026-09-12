@@ -105,7 +105,7 @@ export default function Task08Pipes({ markComplete, isComplete }: TaskContext) {
           ))}
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 rounded-md border border-border bg-black/60 p-3 font-mono text-sm">
+        <div className="mt-4 flex min-w-0 flex-wrap items-center gap-2 rounded-md border border-border bg-black/60 p-3 font-mono text-sm [&>span]:break-all">
           <span className="text-gold-soft">kali@lab:~$</span>
           {src ? <span className="text-accent">{SOURCES.find((s) => s.id === src)!.label}</span> : <span className="text-muted-foreground/60">sorgente</span>}
           <ArrowRight className="h-3 w-3 text-muted-foreground" />
@@ -124,7 +124,7 @@ export default function Task08Pipes({ markComplete, isComplete }: TaskContext) {
 
         {ran && (
           <div className="mt-4 rounded-md border border-border bg-black/70 p-3 font-mono text-xs">
-            <div className="mb-1 text-muted-foreground">$ {cmd}</div>
+            <div className="mb-1 break-all text-muted-foreground">$ {cmd}</div>
             {dst === "stdout" ? (
               preview.length ? preview.map((l, i) => <div key={i} className="text-ivory">{l}</div>) : <div className="text-muted-foreground">(nessun risultato)</div>
             ) : (

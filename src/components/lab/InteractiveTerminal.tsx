@@ -67,7 +67,7 @@ export function InteractiveTerminal({
         {history.map((l, i) => (
           <TermRow key={i} line={l} prompt={prompt} />
         ))}
-        <form onSubmit={submit} className="mt-2 grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 text-ivory">
+        <form onSubmit={submit} className="mt-2 grid min-w-0 grid-cols-1 items-center gap-1 text-ivory sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-2">
           <span className="shrink-0 whitespace-nowrap text-gold-soft">{prompt}</span>
           <input
             value={input}

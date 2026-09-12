@@ -47,9 +47,9 @@ function ModuleIntro() {
 
       <div className="mt-10 grid max-w-4xl gap-4 md:grid-cols-3">
         {[
-          { t: "Cosa vedrai", d: "I mattoncini di ogni rete, spiegati con simulazioni." },
-          { t: "Cosa farai", d: "Classifichi IP, mandi ARP, esplori NAT, DNS, port scan." },
-          { t: "Cosa impari", d: "Le basi tecniche indispensabili per ogni attacco successivo." },
+          { t: "Cosa vedrai", d: scenario.highlights[0] },
+          { t: "Cosa farai", d: scenario.highlights[1] },
+          { t: "Cosa impari", d: scenario.highlights[2] },
         ].map((x) => (
           <div key={x.t} className="rounded-lg border border-border bg-surface p-5">
             <div className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">

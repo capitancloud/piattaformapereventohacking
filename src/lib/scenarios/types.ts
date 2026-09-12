@@ -24,6 +24,7 @@ export interface Scenario {
   title: string;
   subtitle: string;
   intro: string;
+  highlights: [string, string, string];
   category: string;
   difficulty: "Base" | "Intermedio" | "Avanzato";
   status: "available" | "coming-soon";

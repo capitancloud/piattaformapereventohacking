@@ -141,7 +141,6 @@ export const linuxScenario: Scenario = {
       brief: "È il momento di mettere alla prova tutto ciò che hai imparato in questo modulo. Questo quiz finale copre tutti gli aspetti fondamentali di Linux, dalla navigazione nel terminale alla gestione della sicurezza del sistema.",
       details:
         "Hai affrontato il kernel, le distribuzioni, la shell, i permessi e molto altro. Questo quiz è progettato per sfidare la tua memoria e la tua comprensione pratica dei comandi che abbiamo usato finora.\n\nNon si tratta solo di ricordare i nomi dei comandi, ma di capire in quale situazione usarli. Un vero ethical hacker deve conoscere il proprio sistema operativo come le proprie tasche per poterne scovare i punti deboli o difenderlo efficacemente.\n\nRispondi alle domande basandoti sulla tua esperienza nelle simulazioni precedenti. Se hai dei dubbi, ripensa a come hai risolto i problemi nei task passati e scegli la risposta che ti sembra più logica e sicura.",
-      hint: "Leggile attentamente le opzioni: spesso la differenza tra un comando corretto e uno sbagliato sta in un singolo carattere o in un parametro mancante.",
       hint: "Leggi attentamente le opzioni: spesso la differenza tra un comando corretto e uno sbagliato sta in un singolo carattere o in un parametro mancante.",
       explanation:
         "Congratulazioni, hai gettato le basi per diventare un esperto di Linux. La padronanza della riga di comando è il superpotere che ti permetterà di eccellere nell'ethical hacking.",

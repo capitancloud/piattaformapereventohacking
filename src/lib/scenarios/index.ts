@@ -1,4 +1,5 @@
 import type { Scenario } from "./types";
+import { startHereScenario } from "./start-here";
 import { networkingScenario } from "./networking";
 import { linuxScenario } from "./linux";
 import { bashScenario } from "./bash";
@@ -19,7 +20,7 @@ import { linuxPrivescScenario } from "./linux-privesc";
 import { windowsPrivescScenario } from "./windows-privesc";
 import { passwordAttacksScenario } from "./password-attacks";
 
-export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario, enumerationScenario, vulnAssessmentScenario, exploitationScenario, webExploitationScenario, postExploitationScenario, linuxPrivescScenario, windowsPrivescScenario, passwordAttacksScenario];
+export const scenarios: Scenario[] = [startHereScenario, networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario, enumerationScenario, vulnAssessmentScenario, exploitationScenario, webExploitationScenario, postExploitationScenario, linuxPrivescScenario, windowsPrivescScenario, passwordAttacksScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

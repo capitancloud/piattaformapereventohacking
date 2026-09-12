@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lock, RotateCcw, Terminal, Zap, Target, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Lock, RotateCcw, Terminal, Zap, Target, ShieldCheck, Rocket, Sparkles } from "lucide-react";
 import { scenarios } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
@@ -75,10 +75,10 @@ function Home() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/modules/$slug"
-              params={{ slug: "networking" }}
+              params={{ slug: "start-here" }}
               className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110 hover:shadow-primary/60"
             >
-              Inizia dal primo scenario · Networking
+              Inizia da qui, aspirante hacker
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a
@@ -142,6 +142,83 @@ function Home() {
                 <RotateCcw className="h-3 w-3" /> Azzera progresso
               </button>
             );
+
+            const featured = s.slug === "start-here";
+
+            if (featured) {
+              return (
+                <Link
+                  key={s.id}
+                  to="/modules/$slug"
+                  params={{ slug: s.slug }}
+                  className="group md:col-span-2"
+                >
+                  <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-accent/50 bg-gradient-to-br from-primary/25 via-surface to-accent/15 p-8 transition duration-300 hover:border-accent hover:shadow-2xl hover:shadow-accent/40">
+                    {/* animated shine */}
+                    <div className="pointer-events-none absolute inset-0 opacity-60">
+                      <div
+                        className="absolute -left-40 -top-40 h-96 w-96 rounded-full blur-3xl"
+                        style={{ background: "radial-gradient(circle, oklch(0.78 0.14 295 / 0.35) 0%, transparent 70%)" }}
+                      />
+                      <div
+                        className="absolute -right-32 -bottom-32 h-80 w-80 rounded-full blur-3xl"
+                        style={{ background: "radial-gradient(circle, oklch(0.55 0.24 292 / 0.4) 0%, transparent 70%)" }}
+                      />
+                    </div>
+                    <div className="pointer-events-none absolute -right-1 -top-1 flex items-center gap-1.5 rounded-bl-2xl rounded-tr-2xl border-b border-l border-accent/50 bg-gradient-to-br from-accent to-primary px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-primary-foreground shadow-lg shadow-accent/40">
+                      <Sparkles className="h-3 w-3" /> Parti da qui
+                    </div>
+
+                    <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-start">
+                      <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-accent to-primary shadow-xl shadow-primary/40">
+                        <Rocket className="h-8 w-8 text-primary-foreground" strokeWidth={2} />
+                      </div>
+
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <span className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                          Scenario introduttivo · {s.category}
+                        </span>
+                        <h3 className="mb-3 font-display text-4xl leading-tight text-foreground md:text-5xl">
+                          {s.title}
+                        </h3>
+                        <p className="mb-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                          {s.subtitle}
+                        </p>
+
+                        <ul className="mb-6 grid gap-2 text-sm text-foreground/90 sm:grid-cols-3">
+                          {s.highlights.map((h) => (
+                            <li key={h} className="flex items-start gap-2 rounded-lg border border-accent/20 bg-background/40 p-3 backdrop-blur">
+                              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                              <span className="text-xs leading-snug">{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="mt-auto space-y-3">
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
+                            <span>{total} micro-task guidati</span>
+                            <span className="font-mono text-accent">{done}/{total}</span>
+                          </div>
+                          <div className="h-[4px] w-full overflow-hidden rounded-full bg-border/50">
+                            <div
+                              className="h-full bg-gradient-to-r from-accent via-primary to-accent transition-all duration-700"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                          <div className="flex items-center justify-between gap-3 pt-2">
+                            <span className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition group-hover:brightness-110 group-hover:shadow-accent/60">
+                              {done > 0 ? "Continua da qui" : "Inizia da qui"}
+                              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </span>
+                            {resetButton}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              );
+            }
 
             return (
               <Link

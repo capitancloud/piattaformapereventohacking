@@ -280,22 +280,22 @@ function Home() {
             );
           })}
 
-          {/* Coming soon card */}
-          <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-border/60 bg-surface/30 p-7">
+          {/* Complete platform card */}
+          <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-primary/20 to-accent/10 p-7">
             <div className="mb-6 flex items-center justify-between">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Prossimi {comingSoon}
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                Piattaforma completa
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                <Lock className="h-2.5 w-2.5" /> In arrivo
+              <span className="inline-flex items-center gap-1 rounded-full border border-success/40 bg-success/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-success">
+                <ShieldCheck className="h-2.5 w-2.5" /> Disponibile
               </span>
             </div>
 
-            <h3 className="mb-2 font-display text-3xl text-foreground/60">Altri scenari in arrivo</h3>
+            <h3 className="mb-2 font-display text-3xl text-foreground">200 micro-task ti aspettano</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Web (XSS, IDOR, path traversal), reverse shell, reverse engineering, privilege
-              escalation, exploit di rete, difesa perimetrale e molto altro. Un nuovo scenario ogni
-              volta che aggiungiamo un tassello.
+              Tutti gli scenari sono già pubblicati: networking, Linux, Python, PowerShell, analisi
+              del traffico, sicurezza dei sistemi, scansione, enumerazione, vulnerability assessment,
+              exploitation, web exploitation, post-exploitation, privilege escalation e molto altro.
             </p>
           </div>
         </div>

@@ -47,6 +47,7 @@ export default function Task04Filesystem({ markComplete, isComplete }: TaskConte
     if (target.startsWith("/")) {
       return normalize(target);
     }
+    if (target === "~") return "/home/kali";
     return normalize(`${current}/${target}`);
   };
 
@@ -200,7 +201,7 @@ function TreeNode({ node, depth }: { node: { name: string; children?: { name: st
   return (
     <div style={{ marginLeft: `${indent}rem` }}>
       <span className={node.children ? "text-gold-soft" : "text-ivory/70"}>{node.name}</span>
-      {node.children?.map((child) => <TreeNode key={child.name} node={child} depth={1} />)}
+      {node.children?.map((child) => <TreeNode key={child.name} node={child} depth={depth + 1} />)}
     </div>
   );
 }

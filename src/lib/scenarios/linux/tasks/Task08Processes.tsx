@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Skull, Power } from "lucide-react";
+import { Skull, Power } from "lucide-react";
 import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
 import type { TaskContext } from "../../types";
 import { cn } from "@/lib/utils";
@@ -16,22 +16,30 @@ export default function Task08Processes({ markComplete, isComplete }: TaskContex
   const [serviceStopped, setServiceStopped] = useState(false);
 
   const kill = (pid: number) => {
-    setProcs((p) => p.map((proc) => (proc.pid === pid ? { ...proc, status: "stopped" as const, cpu: 0 } : proc)));
+    setProcs((p) => {
+      const next = p.map((proc) => (proc.pid === pid ? { ...proc, status: "stopped" as const, cpu: 0 } : proc));
+      const suspiciousKilled = next.find((proc) => proc.name === "miner-xmr")?.status === "stopped";
+      const apacheStoppedByProc = next.find((proc) => proc.name === "apache2")?.status === "stopped";
+      if (suspiciousKilled && (apacheStoppedByProc || serviceStopped) && !isComplete) {
+        markComplete();
+      }
+      return next;
+    });
   };
 
   const stopService = () => {
     setServiceStopped(true);
-    setProcs((p) => p.map((proc) => (proc.name === "apache2" ? { ...proc, status: "stopped" as const, cpu: 0 } : proc)));
+    setProcs((p) => {
+      const next = p.map((proc) => (proc.name === "apache2" ? { ...proc, status: "stopped" as const, cpu: 0 } : proc));
+      const suspiciousKilled = next.find((proc) => proc.name === "miner-xmr")?.status === "stopped";
+      if (suspiciousKilled && !isComplete) {
+        markComplete();
+      }
+      return next;
+    });
   };
 
-  const suspiciousKilled = procs.find((p) => p.name === "miner-xmr")?.status === "stopped";
-  const apacheStopped = procs.find((p) => p.name === "apache2")?.status === "stopped";
-
-  const checkComplete = () => {
-    if (suspiciousKilled && apacheStopped && !isComplete) {
-      markComplete();
-    }
-  };
+  const apacheStopped = procs.find((p) => p.name === "apache2")?.status === "stopped" || serviceStopped;
 
   return (
     <div>
@@ -67,10 +75,7 @@ export default function Task08Processes({ markComplete, isComplete }: TaskContex
                 </span>
                 {p.status === "running" && (
                   <button
-                    onClick={() => {
-                      kill(p.pid);
-                      setTimeout(checkComplete, 0);
-                    }}
+                    onClick={() => kill(p.pid)}
                     className="flex items-center gap-1 rounded-md bg-destructive/10 px-2 py-1 text-xs text-destructive transition hover:bg-destructive/20"
                   >
                     <Skull className="h-3 w-3" />
@@ -88,10 +93,7 @@ export default function Task08Processes({ markComplete, isComplete }: TaskContex
             <div className="text-xs text-muted-foreground">systemctl stop apache2</div>
           </div>
           <button
-            onClick={() => {
-              stopService();
-              setTimeout(checkComplete, 0);
-            }}
+            onClick={stopService}
             disabled={apacheStopped}
             className="flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition hover:brightness-110 active:scale-95 disabled:opacity-50"
           >

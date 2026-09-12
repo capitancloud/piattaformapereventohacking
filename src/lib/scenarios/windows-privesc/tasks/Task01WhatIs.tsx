@@ -23,6 +23,9 @@ export default function Task01WhatIs({ markComplete, isComplete }: TaskContext) 
 
   return (
     <div>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        Su Windows la scalata più alta arriva a NT AUTHORITY\\SYSTEM, l'account del sistema operativo stesso. Leggi ogni situazione e decidi: sei già sulla macchina e stai salendo di privilegi? Se sì, è privilege escalation.
+      </p>
       <div className="grid min-w-0 gap-3 sm:grid-cols-2">
         {ACTIONS.map((a) => {
           const value = picked[a.id];

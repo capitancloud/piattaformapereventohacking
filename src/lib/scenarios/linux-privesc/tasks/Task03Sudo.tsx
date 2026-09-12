@@ -22,6 +22,9 @@ export default function Task03Sudo({ markComplete, isComplete }: TaskContext) {
 
   return (
     <div>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+        Il comando «sudo -l» mostra cosa puoi eseguire come root senza password. Alcuni comandi apparentemente innocui nascondono la possibilità di aprire una shell. Per ogni comando scegli se ti porta a root oppure no.
+      </p>
       <div className="min-w-0 rounded-xl border border-border bg-surface p-3">
         <p className="mb-2 font-mono text-[11px] uppercase tracking-widest text-accent">sudo -l — output su web01</p>
         <pre className="min-w-0 whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-md bg-black/60 p-3 font-mono text-[11px] text-ivory/90">

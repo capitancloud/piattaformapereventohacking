@@ -127,7 +127,7 @@ export const powershellScenario: Scenario = {
       title: "Il tuo primo script .ps1",
       goal: "Scrivere ed eseguire uno script parametrico",
       brief:
-        "Uno script PowerShell è un file di testo con estensione .ps1. Può ricevere parametri con param(), stampare messaggi con Write-Host e lo esegui scrivendo .\\nome.ps1 nel terminale.",
+        "Uno script PowerShell è un file di testo con estensione .ps1. Può ricevere parametri con param(), stampare messaggi con Write-Host e lo esegui scrivendo .\nome.ps1 nel terminale.",
       details:"La prima riga tipica è param($nome) che dichiara un parametro chiamato $nome. Dentro lo script puoi usarlo come una qualsiasi **variabile**: Write-Host \"Ciao $nome\".\n\nAttenzione: **PowerShell** richiede il prefisso .\\ per eseguire uno script nella cartella corrente. Questo evita che tu esegua per sbaglio uno script malevolo con lo stesso nome di un cmdlet.\n\nNella simulazione hai un editor: scrivi lo script, salvalo come `saluta.ps1` ed eseguilo passando il tuo nome come parametro.\n\nIl blocco param rende lo script riutilizzabile perché separa il codice dal valore fornito al momento dell’avvio. Dopo il salvataggio, il prefisso punto-barra indica esplicitamente che vuoi eseguire il file presente nella cartella corrente.",
       hint: "Serve: param($nome) sulla prima riga, poi Write-Host con $nome dentro le virgolette. Esegui con .\\saluta.ps1 -nome Ada.",
       explanation:

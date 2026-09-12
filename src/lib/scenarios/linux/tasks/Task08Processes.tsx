@@ -27,7 +27,7 @@ export default function Task08Processes({ markComplete, isComplete }: TaskContex
 
   const kill = (pid: number) => {
     setProcs((p) => {
-      const next = p.map((proc) => (proc.pid === pid ? { ...proc, status: "stopped", cpu: 0 } : proc));
+      const next = p.map((proc) => (proc.pid === pid ? { ...proc, status: "stopped" as ProcStatus, cpu: 0 } : proc));
       const suspiciousKilled = next.find((proc) => proc.name === "miner-xmr")?.status === "stopped";
       const apacheStoppedByProc = next.find((proc) => proc.name === "apache2")?.status === "stopped";
       if (suspiciousKilled && (apacheStoppedByProc || serviceStopped) && !isComplete) {
@@ -40,7 +40,7 @@ export default function Task08Processes({ markComplete, isComplete }: TaskContex
   const stopService = () => {
     setServiceStopped(true);
     setProcs((p) => {
-      const next = p.map((proc) => (proc.name === "apache2" ? { ...proc, status: "stopped", cpu: 0 } : proc));
+      const next = p.map((proc) => (proc.name === "apache2" ? { ...proc, status: "stopped" as ProcStatus, cpu: 0 } : proc));
       const suspiciousKilled = next.find((proc) => proc.name === "miner-xmr")?.status === "stopped";
       if (suspiciousKilled && !isComplete) {
         markComplete();

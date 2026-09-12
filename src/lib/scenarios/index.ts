@@ -6,8 +6,9 @@ import { pythonScenario } from "./python";
 import { powershellScenario } from "./powershell";
 import { trafficScenario } from "./traffic";
 import { linuxSecurityScenario } from "./linux-security";
+import { windowsSecurityScenario } from "./windows-security";
 
-export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario];
+export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

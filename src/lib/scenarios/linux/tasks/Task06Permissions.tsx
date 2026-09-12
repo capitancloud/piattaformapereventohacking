@@ -10,13 +10,13 @@ const FILES = [
   { name: "log.txt", owner: "rw-", group: "rw-", others: "r--", target: { owner: "rw-", group: "rw-", others: "rw-" } },
 ];
 
-const PERM_LABELS: Record<string, string> = {
-  "---": "nessuno",
-  "r--": "solo lettura",
-  "rw-": "lettura e scrittura",
-  "r-x": "lettura e esecuzione",
-  "rwx": "lettura, scrittura, esecuzione",
-};
+function permLabel(perm: string): string {
+  const parts: string[] = [];
+  if (perm[0] === "r") parts.push("lettura");
+  if (perm[1] === "w") parts.push("scrittura");
+  if (perm[2] === "x") parts.push("esecuzione");
+  return parts.length ? parts.join(", ") : "nessuno";
+}
 
 export default function Task06Permissions({ markComplete, isComplete }: TaskContext) {
   const [perms, setPerms] = useState(

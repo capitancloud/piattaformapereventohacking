@@ -1,8 +1,9 @@
+# Netlify rileva automaticamente Bun grazie a bun.lock.
+# La build produce i file statici in dist/ e la funzione server in
+# .netlify/functions-internal (rileata automaticamente da Netlify).
 [build]
   command = "bun run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Nessun redirect manuale: tutte le rotte passano dalla funzione server
+# (SSR), i file statici vengono serviti direttamente.

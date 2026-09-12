@@ -75,16 +75,6 @@ function Home() {
             <span className="font-mono uppercase tracking-[0.2em]">Ethical hacking · Interactive lab</span>
           </div>
 
-          <div className="mb-6 inline-flex w-full max-w-2xl items-start gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-amber-200 backdrop-blur md:items-center md:px-5 md:py-3.5">
-            <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-400 md:mt-0" />
-            <div className="flex flex-col gap-0.5 md:flex-row md:items-center md:gap-3">
-              <span className="font-bold uppercase tracking-wider text-amber-300">Beta</span>
-              <span className="text-sm leading-snug">
-                La piattaforma è ancora in fase di sviluppo: potresti trovare imprecisioni o malfunzionamenti.
-              </span>
-            </div>
-          </div>
-
           <h1 className="max-w-4xl font-display text-5xl leading-[1.02] text-foreground md:text-7xl">
             Impara l'ethical hacking{" "}
             <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">

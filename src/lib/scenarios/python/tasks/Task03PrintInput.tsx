@@ -81,11 +81,11 @@ export default function Task03PrintInput({ markComplete, isComplete }: TaskConte
           </button>
         </div>
 
-        <div className="rounded-xl border border-border bg-black/40 p-4 font-mono text-sm text-emerald-200">
+        <div className="min-w-0 rounded-xl border border-border bg-black/40 p-4 font-mono text-sm text-emerald-200">
           <div className="mb-2 font-mono text-xs uppercase tracking-widest text-accent">Output</div>
           {output.length === 0 && <div className="text-muted-foreground">Premi Esegui per vedere il risultato.</div>}
           {output.map((line, i) => (
-            <div key={i} className="whitespace-pre-wrap">{line}</div>
+            <div key={i} className="whitespace-pre-wrap break-words [overflow-wrap:anywhere]">{line}</div>
           ))}
         </div>
       </div>

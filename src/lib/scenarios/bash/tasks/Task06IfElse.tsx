@@ -86,7 +86,7 @@ export default function Task06IfElse({ markComplete, isComplete }: TaskContext) 
           </label>
         </div>
 
-        <pre className="mt-4 overflow-auto rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
+        <pre className="mt-4 min-w-0 overflow-x-auto whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
 {`if [ "$eta" ${op} ${val} ]; then
   echo "Sei maggiorenne / condizione vera"
 else

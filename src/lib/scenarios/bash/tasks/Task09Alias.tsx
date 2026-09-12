@@ -79,19 +79,19 @@ export default function Task09Alias({ markComplete, isComplete }: TaskContext) {
 
   return (
     <div>
-      <div className="grid gap-4 md:grid-cols-[1fr_280px]">
+      <div className="grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_280px]">
         <InteractiveTerminal title="bash simulato" onCommand={onCommand} heightClass="min-h-[280px]" />
 
-        <div className="rounded-xl border border-border bg-surface p-4">
+        <div className="min-w-0 rounded-xl border border-border bg-surface p-4">
           <div className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">Crea un alias</div>
           <div className="mb-3 space-y-2">
-            <div className="flex items-center gap-2 rounded-md border border-border bg-background px-2 py-1.5">
-              <span className="font-mono text-xs text-muted-foreground">alias</span>
+            <div className="grid min-w-0 grid-cols-[auto_auto_auto_auto_minmax(0,1fr)_auto] items-center gap-2 rounded-md border border-border bg-background px-2 py-1.5">
+              <span className="whitespace-nowrap font-mono text-xs text-muted-foreground">alias</span>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value.replace(/[^a-zA-Z0-9_-]/g, ""))}
                 placeholder="ll"
-                className="w-16 bg-transparent font-mono text-sm text-foreground outline-none"
+                className="min-w-0 w-16 bg-transparent font-mono text-sm text-foreground outline-none"
               />
               <span className="text-muted-foreground">=</span>
               <span className="text-muted-foreground">'</span>
@@ -99,7 +99,7 @@ export default function Task09Alias({ markComplete, isComplete }: TaskContext) {
                 value={cmd}
                 onChange={(e) => setCmd(e.target.value)}
                 placeholder="ls -la"
-                className="flex-1 bg-transparent font-mono text-sm text-foreground outline-none"
+                className="min-w-0 w-full bg-transparent font-mono text-sm text-foreground outline-none"
               />
               <span className="text-muted-foreground">'</span>
             </div>

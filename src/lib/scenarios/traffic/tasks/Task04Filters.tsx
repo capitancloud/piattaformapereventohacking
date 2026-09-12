@@ -65,7 +65,7 @@ export default function Task04Filters({ markComplete, isComplete }: TaskContext)
         </div>
 
         <div className={cn(
-          "flex items-center gap-2 rounded-md border-2 bg-black/60 p-2 font-mono text-sm transition",
+          "grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 rounded-md border-2 bg-black/60 p-2 font-mono text-sm transition",
           feedback === "ok" && "border-success",
           feedback === "no" && "border-destructive",
           !feedback && (filter && !valid ? "border-destructive/50" : "border-border"),
@@ -79,7 +79,7 @@ export default function Task04Filters({ markComplete, isComplete }: TaskContext)
             }}
             spellCheck={false}
             placeholder="scrivi qui il filtro..."
-            className="flex-1 bg-transparent text-ivory outline-none placeholder:text-muted-foreground/50"
+            className="min-w-0 w-full bg-transparent text-ivory outline-none placeholder:text-muted-foreground/50"
           />
         </div>
 

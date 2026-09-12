@@ -153,7 +153,7 @@ export default function Task04Filesystem({ markComplete, isComplete }: TaskConte
             autoFocus
             spellCheck={false}
             autoComplete="off"
-            className="flex-1 rounded-md border border-border bg-background px-3 py-2 font-mono text-sm text-foreground outline-none focus:border-accent"
+            className="min-w-0 flex-1 rounded-md border border-border bg-background px-3 py-2 font-mono text-sm text-foreground outline-none focus:border-accent"
             placeholder="cd documenti"
           />
           <button
@@ -177,7 +177,7 @@ export default function Task04Filesystem({ markComplete, isComplete }: TaskConte
           </div>
         )}
 
-        <div className="mt-4 rounded-md border border-border bg-black/60 p-3 font-mono text-xs leading-relaxed text-ivory/80">
+        <div className="mt-4 min-w-0 overflow-x-auto rounded-md border border-border bg-black/60 p-3 font-mono text-xs leading-relaxed text-ivory/80">
           <TreeNode node={TREE} depth={0} />
         </div>
       </div>

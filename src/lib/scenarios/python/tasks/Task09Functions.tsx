@@ -81,11 +81,11 @@ export default function Task09Functions({ markComplete, isComplete }: TaskContex
           </button>
         </div>
 
-        <div className="rounded-xl border border-border bg-black/40 p-4 font-mono text-sm text-emerald-200">
+        <div className="min-w-0 rounded-xl border border-border bg-black/40 p-4 font-mono text-sm text-emerald-200">
           <div className="mb-2 font-mono text-xs uppercase tracking-widest text-accent">REPL</div>
           {output.length === 0 && <span className="text-muted-foreground">Chiama la funzione per vedere il risultato.</span>}
           {output.map((l, i) => (
-            <pre key={i} className="whitespace-pre-wrap animate-in fade-in slide-in-from-left-2 duration-200">{l}</pre>
+            <pre key={i} className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] animate-in fade-in slide-in-from-left-2 duration-200">{l}</pre>
           ))}
         </div>
       </div>

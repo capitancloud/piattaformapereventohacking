@@ -66,14 +66,14 @@ export default function Task03Wireshark({ markComplete, isComplete }: TaskContex
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg border border-border bg-black">
+        <div className="min-w-0 overflow-hidden rounded-lg border border-border bg-black">
           <div className="border-b border-border bg-surface-2 px-3 py-1.5 font-mono text-[10px] text-muted-foreground">
             Wireshark · capture.pcap
           </div>
 
-          <div onClick={() => click("list")} className={ringFor("list")}>
+          <div onClick={() => click("list")} className={cn("min-w-0 overflow-x-auto", ringFor("list"))}>
             <div className="border-b border-border/60 px-3 py-1 text-[10px] uppercase tracking-widest text-gold-soft">Packet list</div>
-            <table className="w-full text-[11px]">
+            <table className="min-w-[640px] w-full text-[11px]">
               <tbody>
                 {PACKETS.map((p) => (
                   <tr key={p.n} className="border-b border-border/40">
@@ -91,7 +91,7 @@ export default function Task03Wireshark({ markComplete, isComplete }: TaskContex
 
           <div onClick={() => click("details")} className={ringFor("details")}>
             <div className="border-y border-border/60 px-3 py-1 text-[10px] uppercase tracking-widest text-gold-soft">Packet details</div>
-            <div className="space-y-0.5 px-3 py-2 font-mono text-[11px] text-ivory/85">
+            <div className="space-y-0.5 px-3 py-2 font-mono text-[11px] text-ivory/85 [&>div]:break-words [&>div]:[overflow-wrap:anywhere]">
               <div>▶ Frame 5: 78 bytes on wire</div>
               <div>▶ Ethernet II, Src: aa:bb:cc:11:22:33, Dst: 11:22:33:aa:bb:cc</div>
               <div>▼ Internet Protocol Version 4</div>
@@ -104,7 +104,7 @@ export default function Task03Wireshark({ markComplete, isComplete }: TaskContex
 
           <div onClick={() => click("bytes")} className={ringFor("bytes")}>
             <div className="border-y border-border/60 px-3 py-1 text-[10px] uppercase tracking-widest text-gold-soft">Packet bytes</div>
-            <div className="px-3 py-2 font-mono text-[11px] leading-relaxed text-ivory/80">
+            <div className="break-all px-3 py-2 font-mono text-[11px] leading-relaxed text-ivory/80">
               0000  {HEX}
             </div>
           </div>

@@ -333,8 +333,9 @@ function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted-foreground">
-        Hacking Lab · Piattaforma di simulazione a scopo formativo. Ambiente completamente
-        simulato: nessun sistema reale viene contattato.
+        Hacking Lab · Piattaforma di simulazione a scopo formativo, realizzata in esclusiva da
+        Ethical Hacker Italiani. Ambiente completamente simulato: nessun sistema reale viene
+        contattato.
       </footer>
     </div>
   );

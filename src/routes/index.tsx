@@ -75,10 +75,10 @@ function Home() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/modules/$slug"
-              params={{ slug: "networking" }}
+              params={{ slug: "start-here" }}
               className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110 hover:shadow-primary/60"
             >
-              Inizia dal primo scenario · Networking
+              Inizia da qui, aspirante hacker
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a

@@ -158,7 +158,7 @@ function Home() {
 
                   <div className="mb-6 flex items-center justify-between">
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                      #01 · {s.category}
+                      #{String(i + 1).padStart(2, "0")} · {s.category}
                     </span>
                     <span className="rounded-full border border-success/40 bg-success/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-success">
                       Disponibile

@@ -46,7 +46,7 @@ export function InteractiveTerminal({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border bg-black shadow-2xl shadow-black/60",
+        "min-w-0 overflow-hidden rounded-xl border border-border bg-black shadow-2xl shadow-black/60",
         className,
       )}
     >
@@ -60,22 +60,22 @@ export function InteractiveTerminal({
       </div>
       <div
         className={cn(
-          "max-h-80 overflow-auto p-4 font-mono text-[12px] leading-relaxed",
+          "max-h-80 min-w-0 overflow-y-auto overflow-x-hidden p-4 font-mono text-[12px] leading-relaxed",
           heightClass,
         )}
       >
         {history.map((l, i) => (
           <TermRow key={i} line={l} prompt={prompt} />
         ))}
-        <form onSubmit={submit} className="mt-2 flex items-center gap-2 text-ivory">
-          <span className="text-gold-soft">{prompt}</span>
+        <form onSubmit={submit} className="mt-2 grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 text-ivory">
+          <span className="shrink-0 whitespace-nowrap text-gold-soft">{prompt}</span>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             autoFocus
             spellCheck={false}
             autoComplete="off"
-            className="flex-1 bg-transparent font-mono text-[12px] text-ivory outline-none placeholder:text-muted-foreground/50"
+            className="min-w-0 w-full bg-transparent font-mono text-[12px] text-ivory outline-none placeholder:text-muted-foreground/50"
             placeholder="scrivi un comando e premi Invio"
           />
         </form>
@@ -88,14 +88,14 @@ export function InteractiveTerminal({
 function TermRow({ line, prompt }: { line: { text: string; kind: "out" | "err" | "info" | "prompt" }; prompt: string }) {
   if (line.kind === "prompt")
     return (
-      <div className="text-ivory">
-        <span className="text-gold-soft">{prompt}</span>
-        {line.text.startsWith(prompt) ? line.text.slice(prompt.length) : line.text}
+      <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] text-ivory">
+        <span className="whitespace-nowrap text-gold-soft">{prompt}</span>
+        <span className="min-w-0 break-all">{line.text.startsWith(prompt) ? line.text.slice(prompt.length) : line.text}</span>
       </div>
     );
   if (line.kind === "err")
-    return <div className="whitespace-pre-wrap text-destructive/90">{line.text}</div>;
+    return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-destructive/90">{line.text}</div>;
   if (line.kind === "info")
-    return <div className="whitespace-pre-wrap text-gold-soft/90">{line.text}</div>;
-  return <div className="whitespace-pre-wrap text-ivory/90">{line.text}</div>;
+    return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-gold-soft/90">{line.text}</div>;
+  return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-ivory/90">{line.text}</div>;
 }

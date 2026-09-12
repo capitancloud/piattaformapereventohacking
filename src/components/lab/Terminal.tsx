@@ -76,7 +76,7 @@ export function Terminal({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border bg-black shadow-2xl shadow-black/60",
+        "min-w-0 overflow-hidden rounded-xl border border-border bg-black shadow-2xl shadow-black/60",
         className,
       )}
     >
@@ -90,22 +90,21 @@ export function Terminal({
       </div>
       <div
         ref={scroller}
-        className="max-h-80 min-h-[180px] overflow-auto p-4 font-mono text-[12px] leading-relaxed"
+        className="max-h-80 min-h-[180px] min-w-0 overflow-y-auto overflow-x-hidden p-4 font-mono text-[12px] leading-relaxed"
       >
         {rendered.map((l, i) => (
           <TermRow key={i} line={l} prompt={prompt} />
         ))}
         {idx < lines.length && lines[idx]!.kind === "prompt" && (
-          <div className="text-ivory">
-            <span className="text-gold-soft">{prompt}</span>
-            {current}
-            <Caret />
+          <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] text-ivory">
+            <span className="whitespace-nowrap text-gold-soft">{prompt}</span>
+            <span className="min-w-0 break-all">{current}<Caret /></span>
           </div>
         )}
         {idx >= lines.length && (
-          <div className="text-ivory">
-            <span className="text-gold-soft">{prompt}</span>
-            <Caret />
+          <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] text-ivory">
+            <span className="whitespace-nowrap text-gold-soft">{prompt}</span>
+            <span><Caret /></span>
           </div>
         )}
       </div>
@@ -116,16 +115,16 @@ export function Terminal({
 function TermRow({ line, prompt }: { line: TermLine; prompt: string }) {
   if (line.kind === "prompt")
     return (
-      <div className="text-ivory">
-        <span className="text-gold-soft">{prompt}</span>
-        {line.text}
+      <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] text-ivory">
+        <span className="whitespace-nowrap text-gold-soft">{prompt}</span>
+        <span className="min-w-0 break-all">{line.text}</span>
       </div>
     );
   if (line.kind === "err")
-    return <div className="whitespace-pre-wrap text-destructive/90">{line.text}</div>;
+    return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-destructive/90">{line.text}</div>;
   if (line.kind === "info")
-    return <div className="whitespace-pre-wrap text-gold-soft/90">{line.text}</div>;
-  return <div className="whitespace-pre-wrap text-ivory/90">{line.text}</div>;
+    return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-gold-soft/90">{line.text}</div>;
+  return <div className="whitespace-pre-wrap break-words [overflow-wrap:anywhere] text-ivory/90">{line.text}</div>;
 }
 
 function Caret() {

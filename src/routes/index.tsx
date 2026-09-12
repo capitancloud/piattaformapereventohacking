@@ -32,6 +32,7 @@ function Home() {
   const { completedFor, resetScenario } = useProgress();
   const available = scenarios.filter((s) => s.status === "available");
   const comingSoon = TOTAL_PLANNED - available.length;
+  const totalMicroTasks = scenarios.reduce((sum, s) => sum + s.tasks.length, 0);
 
   return (
     <div className="grain min-h-screen bg-background">

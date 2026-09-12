@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InteractiveTerminal, type TermResponse } from "@/components/lab/InteractiveTerminal";
 import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
 import { cn } from "@/lib/utils";
@@ -55,7 +55,9 @@ export default function Task03Scanner({ markComplete, isComplete }: TaskContext)
   };
 
   const done = found.length === 2;
-  if (done && !isComplete) markComplete();
+  useEffect(() => {
+    if (done && !isComplete) markComplete();
+  }, [done, isComplete, markComplete]);
 
   return (
     <div>

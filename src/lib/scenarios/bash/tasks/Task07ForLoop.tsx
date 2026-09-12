@@ -55,7 +55,7 @@ export default function Task07ForLoop({ markComplete, isComplete }: TaskContext)
           />
         </label>
 
-        <pre className="overflow-auto rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
+        <pre className="min-w-0 overflow-x-auto whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
 {`for host in ${NAMES.slice(0, n).join(" ")}; do
   ping -c1 $host
 done`}
@@ -70,9 +70,9 @@ done`}
         </button>
 
         {output.length > 0 && (
-          <div className="mt-4 rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
+          <div className="mt-4 min-w-0 rounded-md border border-border bg-black/70 p-3 font-mono text-xs text-ivory">
             {output.map((l, i) => (
-              <div key={i} className="animate-in fade-in slide-in-from-left-2 duration-300">{l}</div>
+              <div key={i} className="break-words [overflow-wrap:anywhere] animate-in fade-in slide-in-from-left-2 duration-300">{l}</div>
             ))}
           </div>
         )}

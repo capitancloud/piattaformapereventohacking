@@ -61,8 +61,8 @@ export default function Task02Anatomy({ markComplete, isComplete }: TaskContext)
           Componi: elenco dettagliato di /etc, mostrando anche i file nascosti
         </div>
 
-        <div className="mb-4 rounded-lg border border-border bg-black/60 p-4 font-mono text-sm">
-          <span className="text-gold-soft">kali@lab:~$ </span>
+        <div className="mb-4 min-w-0 break-words [overflow-wrap:anywhere] rounded-lg border border-border bg-black/60 p-4 font-mono text-sm">
+          <span className="whitespace-nowrap text-gold-soft">kali@lab:~$ </span>
           {line.length === 0 && <span className="text-muted-foreground/60">clicca i pezzi sotto</span>}
           {line.map((c) => (
             <span key={c.id} className="mr-2 inline-flex items-center gap-1">

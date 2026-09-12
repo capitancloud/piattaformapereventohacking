@@ -79,9 +79,9 @@ export default function Task07ForEach({ markComplete, isComplete }: TaskContext)
         </div>
 
         {(lines.length > 0 || running) && (
-          <div className="mt-4 rounded-md border border-border bg-black/70 p-3 font-mono text-sm">
+          <div className="mt-4 min-w-0 rounded-md border border-border bg-black/70 p-3 font-mono text-sm">
             {lines.map((l, i) => (
-              <div key={i} className="animate-in fade-in slide-in-from-left-1 text-ivory duration-300">
+              <div key={i} className="break-words [overflow-wrap:anywhere] animate-in fade-in slide-in-from-left-1 text-ivory duration-300">
                 {l}
               </div>
             ))}

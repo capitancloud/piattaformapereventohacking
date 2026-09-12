@@ -4,6 +4,8 @@ import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
 import type { TaskContext } from "../../types";
 import { cn } from "@/lib/utils";
 
+type TreeNodeType = { name: string; children?: TreeNodeType[] };
+
 const TARGETS = [
   { path: "/home/kali/documenti", label: "documenti" },
   { path: "/home/kali/immagini/vacanze", label: "vacanze" },

@@ -44,7 +44,8 @@ export default function Task09Alias({ markComplete, isComplete }: TaskContext) {
 
     const declare = trimmed.match(/^alias\s+([a-zA-Z_][\w-]*)=(['"])(.+)\2$/);
     if (declare) {
-      const [, n, , c] = declare;
+      const n = declare[1] ?? "";
+      const c = declare[3] ?? "";
       if (!aliases.find((a) => a.name === n)) setAliases((a) => [...a, { name: n, cmd: c }]);
       return { text: `alias registrato: ${n}='${c}'`, kind: "info" };
     }

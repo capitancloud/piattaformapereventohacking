@@ -44,7 +44,8 @@ export default function Task03EchoVars({ markComplete, isComplete }: TaskContext
     // Assignment
     const assign = cmd.match(/^([A-Z_][A-Z0-9_]*)=(.+)$/i);
     if (assign) {
-      const [, name, val] = assign;
+      const name = assign[1] ?? "";
+      const val = assign[2] ?? "";
       const cleanVal = val.replace(/^["']|["']$/g, "");
       const newVars = { ...vars, [name]: cleanVal };
       setVars(newVars);

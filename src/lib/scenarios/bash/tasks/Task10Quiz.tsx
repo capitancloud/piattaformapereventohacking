@@ -29,7 +29,7 @@ export default function Task10Quiz({ markComplete, isComplete }: TaskContext) {
   const [answers, setAnswers] = useState<(number | null)[]>(Array(QUESTIONS.length).fill(null));
   const [submitted, setSubmitted] = useState(false);
 
-  const score = answers.reduce((acc: number, a, i) => acc + (a === QUESTIONS[i].answer ? 1 : 0), 0);
+  const score = answers.reduce((acc: number, a, i) => acc + (a === QUESTIONS[i]?.answer ? 1 : 0), 0);
   const allAnswered = answers.every((a) => a !== null);
 
   const submit = () => {

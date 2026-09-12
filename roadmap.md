@@ -1,2 +1,0 @@
-- Rinominare scenario "Scansione con Nmap" in "Scansione della Rete"
-- Scenario Enumerazione (10 task, in corso)

@@ -68,10 +68,10 @@ export default function Task04Filesystem({ markComplete, isComplete }: TaskConte
     return null;
   };
 
-  const exists = (path: string, node: typeof TREE): boolean => {
+  const exists = (path: string, node: TreeNodeType): boolean => {
     if (path === "/") return true;
     const parts = path.split("/").filter(Boolean);
-    let current: typeof TREE | undefined = node;
+    let current: TreeNodeType | undefined = node;
     for (const part of parts) {
       current = current?.children?.find((c) => c.name === part);
       if (!current) return false;

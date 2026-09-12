@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, Outlet, useMatches } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Circle, Lock, RotateCcw } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Circle, Lock, RotateCcw, Terminal } from "lucide-react";
 import { getScenario } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
@@ -10,12 +10,12 @@ export const Route = createFileRoute("/modules/$slug")({
     return {
       meta: scenario
         ? [
-            { title: `${scenario.title} · CyberLab` },
+            { title: `${scenario.title} · Hacking Lab` },
             { name: "description", content: scenario.intro.slice(0, 155) },
-            { property: "og:title", content: `${scenario.title} · CyberLab` },
+            { property: "og:title", content: `${scenario.title} · Hacking Lab` },
             { property: "og:description", content: scenario.intro.slice(0, 155) },
           ]
-        : [{ title: "Modulo · CyberLab" }],
+        : [{ title: "Scenario · Hacking Lab" }],
     };
   },
   component: ModuleLayout,
@@ -36,13 +36,13 @@ function ModuleLayout() {
         <TopBar />
         <div className="mx-auto max-w-3xl px-6 py-24 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
-            <Lock className="h-3 w-3 text-gold" /> Prossimamente
+            <Lock className="h-3 w-3 text-accent" /> In arrivo
           </span>
-          <h1 className="mt-6 font-serif text-5xl text-ivory">{scenario.title}</h1>
+          <h1 className="mt-6 font-display text-5xl text-foreground">{scenario.title}</h1>
           <p className="mt-4 text-lg text-muted-foreground">{scenario.intro}</p>
           <Link
             to="/"
-            className="mt-10 inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-sm text-ivory transition hover:border-gold/60"
+            className="mt-10 inline-flex items-center gap-2 rounded-md border border-border bg-surface px-5 py-2.5 text-sm text-foreground transition hover:border-accent/60"
           >
             <ArrowLeft className="h-4 w-4" /> Torna alla home
           </Link>
@@ -64,37 +64,37 @@ function ModuleLayout() {
         <aside className="lg:sticky lg:top-6 lg:h-fit">
           <Link
             to="/"
-            className="mb-6 inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-ivory"
+            className="mb-6 inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
           >
-            <ArrowLeft className="h-3 w-3" /> Tutti i moduli
+            <ArrowLeft className="h-3 w-3" /> Tutti gli scenari
           </Link>
-          <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gold">
-            Modulo · {scenario.difficulty}
+          <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            {scenario.category} · {scenario.difficulty}
           </p>
-          <h1 className="font-serif text-3xl leading-tight text-ivory">{scenario.title}</h1>
+          <h1 className="font-display text-3xl leading-tight text-foreground">{scenario.title}</h1>
           <p className="mt-2 text-sm text-muted-foreground">{scenario.subtitle}</p>
 
           <div className="mt-6 rounded-lg border border-border bg-surface p-4">
             <div className="mb-2 flex items-center justify-between text-xs">
               <span className="text-muted-foreground">Progresso</span>
-              <span className="font-mono text-gold">
+              <span className="font-mono text-accent">
                 {done}/{total}
               </span>
             </div>
             <div className="h-[3px] w-full overflow-hidden rounded-full bg-border">
               <div
-                className="h-full bg-gold transition-all duration-700"
+                className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
                 style={{ width: `${pct}%` }}
               />
             </div>
             {done > 0 && (
               <button
                 onClick={() => {
-                  if (confirm("Ricominciare il modulo? Il progresso verrà azzerato.")) {
+                  if (confirm("Ricominciare lo scenario? Il progresso verrà azzerato.")) {
                     resetScenario(scenario.id);
                   }
                 }}
-                className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-muted-foreground transition hover:text-ivory"
+                className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-muted-foreground transition hover:text-foreground"
               >
                 <RotateCcw className="h-3 w-3" /> Ricomincia
               </button>
@@ -113,8 +113,8 @@ function ModuleLayout() {
                   className={cn(
                     "flex items-start gap-3 rounded-md border border-transparent px-3 py-2.5 text-sm transition",
                     active
-                      ? "border-gold/40 bg-gold/10 text-ivory"
-                      : "text-muted-foreground hover:bg-surface hover:text-ivory",
+                      ? "border-accent/40 bg-accent/10 text-foreground"
+                      : "text-muted-foreground hover:bg-surface hover:text-foreground",
                   )}
                 >
                   {isDone ? (
@@ -145,10 +145,15 @@ function ModuleLayout() {
 
 function TopBar() {
   return (
-    <header className="border-b border-border">
+    <header className="border-b border-border bg-surface/40 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-serif text-lg tracking-tight text-ivory">CyberLab</span>
+        <Link to="/" className="flex items-center gap-2.5">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent">
+            <Terminal className="h-4 w-4 text-primary-foreground" strokeWidth={2.5} />
+          </span>
+          <span className="font-display text-lg tracking-tight text-foreground">
+            Hacking<span className="text-accent">Lab</span>
+          </span>
         </Link>
       </div>
     </header>

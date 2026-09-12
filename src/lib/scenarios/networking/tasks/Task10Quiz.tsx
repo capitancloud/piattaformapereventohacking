@@ -6,87 +6,89 @@ import { cn } from "@/lib/utils";
 
 const QUESTIONS = [
   {
-    q: "Cosa fa la sequenza ../ dentro un percorso?",
+    q: "Quale di questi è un indirizzo IP privato?",
+    options: ["8.8.8.8", "192.168.1.10", "127.0.0.1", "93.184.216.34"],
+    correct: 1,
+  },
+  {
+    q: "Cosa significa la notazione /24 dopo un indirizzo IP?",
     options: [
-      "Ripete la cartella corrente",
-      "Sale di una cartella nel filesystem",
-      "Cifra il percorso",
-      "Rimuove il file",
+      "24 sono i bit riservati agli host",
+      "24 sono i bit che identificano la rete",
+      "L'IP appartiene alla classe A",
+      "Il TTL vale 24",
     ],
     correct: 1,
   },
   {
-    q: "Su un server Linux, quale file è il classico bersaglio di un path traversal?",
-    options: ["/etc/passwd", "/tmp/index.html", "/root/logo.png", "/usr/bin/ls"],
-    correct: 0,
+    q: "L'indirizzo MAC lavora a livello…",
+    options: ["Applicativo", "Livello 2 (data link)", "Livello 3 (network)", "Livello 4 (trasporto)"],
+    correct: 1,
   },
   {
-    q: "Su un server Windows, uno dei file storici di riferimento è:",
-    options: ["C:\\Windows\\win.ini", "C:\\Users\\Public\\index.html", "C:\\Autoexec.bat", "C:\\Program Files\\password.txt"],
-    correct: 0,
-  },
-  {
-    q: "%2e%2e%2f è l'URL-encoding di:",
-    options: ["../", "..\\", "%%%", "//."],
-    correct: 0,
-  },
-  {
-    q: "Perché %252e%252e%252f può bypassare un filtro?",
+    q: "Il protocollo ARP serve a:",
     options: [
-      "Perché è più corto",
-      "Perché sfrutta una doppia decodifica applicata dal server",
-      "Perché è ignorato dal browser",
-      "Perché è un formato binario",
+      "Assegnare un IP a un nuovo dispositivo",
+      "Tradurre un IP nella LAN nel suo MAC address",
+      "Risolvere un nome a dominio in IP",
+      "Cifrare il traffico interno",
     ],
     correct: 1,
   },
   {
-    q: "A cosa serviva storicamente il null byte %00 in un attacco di path traversal?",
+    q: "Uno switch, all'inizio, con la MAC-table vuota…",
     options: [
-      "A cancellare il file",
-      "A troncare la stringa dopo il nome scelto, ignorando l'estensione appesa dal server",
-      "A cifrare la richiesta",
-      "A raddoppiare il payload",
+      "Non inoltra nulla",
+      "Fa flooding: manda il frame a tutte le porte tranne quella di origine",
+      "Blocca l'host sorgente",
+      "Genera un errore ARP",
     ],
     correct: 1,
   },
   {
-    q: "Qual è la difesa più solida contro il path traversal?",
+    q: "Un router lavora principalmente al livello…",
+    options: ["2 (data link)", "3 (network / IP)", "4 (trasporto / TCP)", "7 (applicativo)"],
+    correct: 1,
+  },
+  {
+    q: "A cosa serve il TTL nell'header IP?",
     options: [
-      "Bloccare i .. con una regex",
-      "Canonicalizzare il percorso e verificare che resti dentro la cartella permessa",
-      "Rinominare il file",
-      "Rimuovere l'estensione",
+      "Cifra il payload",
+      "Impedisce che i pacchetti girino all'infinito: ogni router lo decrementa",
+      "Autentica il mittente",
+      "Contiene la porta di destinazione",
     ],
     correct: 1,
   },
   {
-    q: "Dove NON dovrebbero mai finire le password del database?",
+    q: "Il NAT permette di…",
     options: [
-      "In un secret manager",
-      "In variabili d'ambiente del processo",
-      "In un file di configurazione dentro la webroot",
-      "Cifrate in un KMS",
+      "Assegnare un IP pubblico a ogni dispositivo interno",
+      "Far uscire più dispositivi interni con un solo IP pubblico, distinguendoli via porta",
+      "Cifrare il traffico verso Internet",
+      "Bloccare tutte le connessioni entranti",
+    ],
+    correct: 1,
+  },
+  {
+    q: "Il DNS traduce…",
+    options: [
+      "Un IP nel suo MAC",
+      "Un nome a dominio in un indirizzo IP",
+      "Una porta nel nome del servizio",
+      "Un pacchetto TCP in UDP",
+    ],
+    correct: 1,
+  },
+  {
+    q: "Una porta con stato «filtered» in un port scan significa che…",
+    options: [
+      "Il servizio è attivo e risponde",
+      "Nessun servizio è in ascolto",
+      "Un firewall in mezzo scarta la richiesta senza risposta",
+      "La rete è caduta",
     ],
     correct: 2,
-  },
-  {
-    q: "Il path traversal può presentarsi solo negli URL?",
-    options: [
-      "Sì, solo negli URL",
-      "No, ovunque un input utente finisca in una chiamata al filesystem (body JSON, header, upload…)",
-    ],
-    correct: 1,
-  },
-  {
-    q: "Rispetto a un nome di file, cos'è preferibile passare al server?",
-    options: [
-      "Un percorso relativo",
-      "Un identificatore opaco (es. l'id del file nel DB)",
-      "Il percorso assoluto completo",
-      "Il nome originale scelto dall'utente",
-    ],
-    correct: 1,
   },
 ];
 
@@ -112,8 +114,8 @@ export default function Task10Quiz({ markComplete, isComplete }: TaskContext) {
             key={i}
             className="overflow-hidden rounded-xl border border-border bg-surface p-5 shadow-2xl shadow-black/40"
           >
-            <p className="mb-3 font-serif text-lg text-ivory">
-              <span className="mr-2 font-mono text-xs text-gold">
+            <p className="mb-3 font-display text-lg text-foreground">
+              <span className="mr-2 font-mono text-xs text-accent">
                 {String(i + 1).padStart(2, "0")}
               </span>
               {q.q}
@@ -135,10 +137,10 @@ export default function Task10Quiz({ markComplete, isComplete }: TaskContext) {
                     className={cn(
                       "flex w-full items-center justify-between rounded-md border px-4 py-2.5 text-left text-sm transition",
                       selected
-                        ? "border-gold bg-gold/10 text-ivory"
-                        : "border-border bg-background text-muted-foreground hover:border-gold/50 hover:text-ivory",
-                      isCorrect && "border-success bg-success/10 text-ivory",
-                      isWrong && "border-destructive bg-destructive/10 text-ivory",
+                        ? "border-accent bg-accent/10 text-foreground"
+                        : "border-border bg-background text-muted-foreground hover:border-accent/50 hover:text-foreground",
+                      isCorrect && "border-success bg-success/10 text-foreground",
+                      isWrong && "border-destructive bg-destructive/10 text-foreground",
                     )}
                   >
                     <span>{opt}</span>
@@ -156,7 +158,7 @@ export default function Task10Quiz({ markComplete, isComplete }: TaskContext) {
         <button
           onClick={check}
           disabled={answers.some((a) => a === null)}
-          className="rounded-md bg-gold px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Verifica risposte
         </button>
@@ -175,9 +177,8 @@ export default function Task10Quiz({ markComplete, isComplete }: TaskContext) {
 
       {isComplete && (
         <SuccessNote>
-          Modulo completato. Le tre regole d'oro contro il path traversal:{" "}
-          <strong>canonicalizza prima di validare</strong>, <strong>confina il processo</strong>{" "}
-          (chroot, container, permessi) e <strong>tratta i file come id, non come nomi</strong>.
+          Hai completato Networking. Ora hai i mattoncini per capire gli scenari successivi:
+          scanning, MITM, hijacking, exploit, difesa perimetrale.
         </SuccessNote>
       )}
     </div>

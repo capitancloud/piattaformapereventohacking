@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ModulesSlugRouteImport } from './routes/modules.$slug'
 import { Route as ModulesSlugIndexRouteImport } from './routes/modules.$slug.index'
 import { Route as ModulesSlugTaskIdRouteImport } from './routes/modules.$slug.$taskId'
-import { Route as ModulesSlugSlidesRouteImport } from './routes/modules.$slug.slides'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,23 +34,16 @@ const ModulesSlugTaskIdRoute = ModulesSlugTaskIdRouteImport.update({
   path: '/$taskId',
   getParentRoute: () => ModulesSlugRoute,
 } as any)
-const ModulesSlugSlidesRoute = ModulesSlugSlidesRouteImport.update({
-  id: '/slides',
-  path: '/slides',
-  getParentRoute: () => ModulesSlugRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/modules/$slug': typeof ModulesSlugRouteWithChildren
   '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
-  '/modules/$slug/slides': typeof ModulesSlugSlidesRoute
   '/modules/$slug/': typeof ModulesSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
-  '/modules/$slug/slides': typeof ModulesSlugSlidesRoute
   '/modules/$slug': typeof ModulesSlugIndexRoute
 }
 export interface FileRoutesById {
@@ -59,26 +51,19 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/modules/$slug': typeof ModulesSlugRouteWithChildren
   '/modules/$slug/$taskId': typeof ModulesSlugTaskIdRoute
-  '/modules/$slug/slides': typeof ModulesSlugSlidesRoute
   '/modules/$slug/': typeof ModulesSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/modules/$slug'
-    | '/modules/$slug/$taskId'
-    | '/modules/$slug/slides'
-    | '/modules/$slug/'
+    '/' | '/modules/$slug' | '/modules/$slug/$taskId' | '/modules/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    '/' | '/modules/$slug/$taskId' | '/modules/$slug/slides' | '/modules/$slug'
+  to: '/' | '/modules/$slug/$taskId' | '/modules/$slug'
   id:
     | '__root__'
     | '/'
     | '/modules/$slug'
     | '/modules/$slug/$taskId'
-    | '/modules/$slug/slides'
     | '/modules/$slug/'
   fileRoutesById: FileRoutesById
 }
@@ -117,25 +102,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModulesSlugTaskIdRouteImport
       parentRoute: typeof ModulesSlugRoute
     }
-    '/modules/$slug/slides': {
-      id: '/modules/$slug/slides'
-      path: '/slides'
-      fullPath: '/modules/$slug/slides'
-      preLoaderRoute: typeof ModulesSlugSlidesRouteImport
-      parentRoute: typeof ModulesSlugRoute
-    }
   }
 }
 
 interface ModulesSlugRouteChildren {
   ModulesSlugTaskIdRoute: typeof ModulesSlugTaskIdRoute
-  ModulesSlugSlidesRoute: typeof ModulesSlugSlidesRoute
   ModulesSlugIndexRoute: typeof ModulesSlugIndexRoute
 }
 
 const ModulesSlugRouteChildren: ModulesSlugRouteChildren = {
   ModulesSlugTaskIdRoute: ModulesSlugTaskIdRoute,
-  ModulesSlugSlidesRoute: ModulesSlugSlidesRoute,
   ModulesSlugIndexRoute: ModulesSlugIndexRoute,
 }
 

@@ -6,6 +6,22 @@ import { useProgress } from "@/hooks/useProgress";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/modules/$slug/$taskId")({
+  head: ({ params }) => {
+    const scenario = params?.slug ? getScenario(params.slug) : undefined;
+    const task = scenario?.tasks.find((item) => item.id === params?.taskId);
+    const title = task ? `${task.title} · ${scenario?.title} · Hacking Lab` : "Task · Hacking Lab";
+    const description = task?.brief ?? "Completa un task interattivo di ethical hacking.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description.slice(0, 155) },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description.slice(0, 155) },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
+      ],
+    };
+  },
   component: TaskPage,
 });
 
@@ -15,7 +31,8 @@ function TaskPage() {
   if (!scenario) throw notFound();
   const taskIndex = scenario.tasks.findIndex((t) => t.id === taskId);
   if (taskIndex === -1) throw notFound();
-  const task = scenario.tasks[taskIndex]!;
+  const task = scenario.tasks[taskIndex];
+  if (!task) throw notFound();
   const prev = scenario.tasks[taskIndex - 1];
   const next = scenario.tasks[taskIndex + 1];
 

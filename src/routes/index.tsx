@@ -122,12 +122,12 @@ function Home() {
               Catalogo scenari
             </p>
             <h2 className="font-display text-3xl text-foreground md:text-4xl">
-              20 scenari, in arrivo uno per volta
+              Piattaforma completa: 20 scenari, 200 micro-task
             </h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Il primo scenario è già disponibile. Gli altri {comingSoon} verranno pubblicati a mano
-            a mano.
+            Tutti gli scenari sono disponibili e pronti da esplorare. Ogni percorso è pensato e
+            realizzato in esclusiva da Ethical Hacker Italiani.
           </p>
         </div>
 

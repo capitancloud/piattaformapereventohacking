@@ -26,7 +26,7 @@ export function ChoiceGrid({ items, markComplete, isComplete, instruction, succe
             const wrong = checked && selected && !correct;
             return <Button key={option} type="button" variant="outline" size="sm" disabled={checked} onClick={() => setAnswers((previous) => previous.map((value, i) => i === index ? optionIndex : value))} className={cn("h-auto min-h-8 whitespace-normal text-left", selected && !checked && "border-accent bg-accent/15", correct && "border-success bg-success/10 text-success", wrong && "border-destructive bg-destructive/10 text-destructive")}>
               {correct && <CheckCircle2 />}{wrong && <XCircle />}{option}
-            </Button>;
+            </Button>
           })}
         </div>
         {checked && item.reason && <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{item.reason}</p>}

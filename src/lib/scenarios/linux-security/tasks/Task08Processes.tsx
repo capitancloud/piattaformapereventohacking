@@ -1,0 +1,12 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
+import { cn } from "@/lib/utils";
+import type { TaskContext } from "../../types";
+const PROCESSES=[
+ {pid:1,user:"root",cpu:"0.1",cmd:"/sbin/init",bad:false,why:"È il processo principale del sistema."},
+ {pid:722,user:"www-data",cpu:"0.3",cmd:"nginx: worker process",bad:false,why:"È coerente con il server web attivo."},
+ {pid:991,user:"root",cpu:"0.0",cmd:"/usr/sbin/sshd -D",bad:false,why:"Gestisce il servizio SSH previsto."},
+ {pid:1842,user:"www-data",cpu:"96.4",cmd:"/tmp/.cache/update --pool unknown.example",bad:true,why:"Parte da /tmp, è nascosto, consuma molta CPU e contatta una destinazione insolita."},
+];
+export default function Task08Processes({markComplete,isComplete}:TaskContext){const [choice,setChoice]=useState<number|null>(null);const [checked,setChecked]=useState(false);const chosen=PROCESSES.find((p)=>p.pid===choice);return <div><div className="overflow-x-auto rounded-lg border border-border bg-background"><table className="w-full min-w-[620px] text-left font-mono text-xs"><thead className="bg-surface text-muted-foreground"><tr><th className="p-3">PID</th><th className="p-3">USER</th><th className="p-3">CPU%</th><th className="p-3">COMMAND</th><th className="p-3">AZIONE</th></tr></thead><tbody>{PROCESSES.map((p)=><tr key={p.pid} className={cn("border-t border-border",choice===p.pid&&"bg-accent/10")}><td className="p-3">{p.pid}</td><td className="p-3">{p.user}</td><td className="p-3">{p.cpu}</td><td className="break-all p-3">{p.cmd}</td><td className="p-3"><Button type="button" variant="outline" size="sm" disabled={checked} onClick={()=>setChoice(p.pid)}>Esamina</Button></td></tr>)}</tbody></table></div>{choice&&<div className="mt-3 rounded-lg border border-border bg-surface p-4 text-sm text-muted-foreground">{checked?chosen?.why:"Hai selezionato il PID "+choice+". Conferma se lo ritieni il più sospetto."}</div>}<Button type="button" className="mt-4" disabled={choice===null} onClick={()=>{setChecked(true);if(chosen?.bad)markComplete();}}>Conferma analisi</Button>{isComplete?<SuccessNote>Hai unito più segnali invece di fidarti del solo nome: percorso insolito, utente, consumo e connessione esterna rendono il processo meritevole di indagine.</SuccessNote>:<InfoNote>Un processo sconosciuto non è automaticamente malevolo. Cerca una combinazione di elementi incoerenti con il ruolo della macchina.</InfoNote>}</div>}

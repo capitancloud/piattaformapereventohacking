@@ -198,7 +198,7 @@ export default function Task04Filesystem({ markComplete, isComplete }: TaskConte
   );
 }
 
-function TreeNode({ node, depth }: { node: { name: string; children?: { name: string; children?: unknown[] }[] }; depth: number }) {
+function TreeNode({ node, depth }: { node: TreeNodeType; depth: number }) {
   const indent = depth * 1.5;
   return (
     <div style={{ marginLeft: `${indent}rem` }}>

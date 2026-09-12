@@ -12,7 +12,7 @@ const TARGETS = [
   { path: "/etc", label: "etc" },
 ];
 
-const TREE = {
+const TREE: TreeNodeType = {
   name: "/",
   children: [
     {

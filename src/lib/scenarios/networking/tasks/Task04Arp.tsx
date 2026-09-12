@@ -41,7 +41,7 @@ export default function Task04Arp({ markComplete, isComplete }: TaskContext) {
           <span className="text-xs text-muted-foreground">Tu: 192.168.1.10</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2">
           {HOSTS.map((h) => {
             const active = target === h.ip && !h.self;
             const isTarget = phase !== "idle" && target === h.ip;

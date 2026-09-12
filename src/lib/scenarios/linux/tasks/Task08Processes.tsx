@@ -4,11 +4,21 @@ import { InfoNote, SuccessNote } from "@/components/lab/Feedback";
 import type { TaskContext } from "../../types";
 import { cn } from "@/lib/utils";
 
-const INITIAL_PROCS = [
-  { pid: 1024, name: "sshd", user: "root", cpu: 1.2, status: "running" as const },
-  { pid: 2048, name: "apache2", user: "www-data", cpu: 4.5, status: "running" as const },
-  { pid: 4096, name: "miner-xmr", user: "nobody", cpu: 89.0, status: "running" as const },
-  { pid: 8192, name: "cron", user: "root", cpu: 0.1, status: "running" as const },
+type ProcStatus = "running" | "stopped";
+
+type Process = {
+  pid: number;
+  name: string;
+  user: string;
+  cpu: number;
+  status: ProcStatus;
+};
+
+const INITIAL_PROCS: Process[] = [
+  { pid: 1024, name: "sshd", user: "root", cpu: 1.2, status: "running" },
+  { pid: 2048, name: "apache2", user: "www-data", cpu: 4.5, status: "running" },
+  { pid: 4096, name: "miner-xmr", user: "nobody", cpu: 89.0, status: "running" },
+  { pid: 8192, name: "cron", user: "root", cpu: 0.1, status: "running" },
 ];
 
 export default function Task08Processes({ markComplete, isComplete }: TaskContext) {

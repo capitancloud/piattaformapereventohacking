@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound, Outlet, useMatches } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Circle, Lock, RotateCcw, Terminal } from "lucide-react";
+import { ArrowLeft, ListChecks, Lock, RotateCcw, Terminal } from "lucide-react";
 import { getScenario } from "@/lib/scenarios";
 import { useProgress } from "@/hooks/useProgress";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/modules/$slug")({
   head: ({ params }) => {
@@ -59,82 +58,43 @@ function ModuleLayout() {
     <div className="min-h-screen bg-background">
       <TopBar />
 
-      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[320px_1fr]">
-        {/* Sidebar */}
-        <aside className="lg:sticky lg:top-6 lg:h-fit">
-          <Link
-            to="/"
-            className="mb-6 inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
-          >
-            <ArrowLeft className="h-3 w-3" /> Tutti gli scenari
-          </Link>
-          <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            {scenario.category} · {scenario.difficulty}
-          </p>
-          <h1 className="font-display text-3xl leading-tight text-foreground">{scenario.title}</h1>
-          <p className="mt-2 text-sm text-muted-foreground">{scenario.subtitle}</p>
-
-          <div className="mt-6 rounded-lg border border-border bg-surface p-4">
-            <div className="mb-2 flex items-center justify-between text-xs">
-              <span className="text-muted-foreground">Progresso</span>
-              <span className="font-mono text-accent">
+      <div className="mx-auto max-w-7xl px-6 py-8">
+        {activeTaskId && (
+          <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-b border-border pb-5">
+            <Link
+              to="/modules/$slug"
+              params={{ slug: scenario.slug }}
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              <ListChecks className="h-4 w-4 text-accent" /> Riepilogo task
+            </Link>
+            <div className="flex min-w-48 flex-1 items-center gap-3">
+              <div className="h-[3px] min-w-24 flex-1 overflow-hidden rounded-full bg-border">
+                <div
+                  className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
+              <span className="shrink-0 font-mono text-xs text-accent">
                 {done}/{total}
               </span>
             </div>
-            <div className="h-[3px] w-full overflow-hidden rounded-full bg-border">
-              <div
-                className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
-                style={{ width: `${pct}%` }}
-              />
-            </div>
             {done > 0 && (
               <button
+                type="button"
                 onClick={() => {
                   if (confirm("Ricominciare lo scenario? Il progresso verrà azzerato.")) {
                     resetScenario(scenario.id);
                   }
                 }}
-                className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-muted-foreground transition hover:text-foreground"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition hover:text-foreground"
               >
-                <RotateCcw className="h-3 w-3" /> Ricomincia
+                <RotateCcw className="h-3.5 w-3.5" /> Ricomincia
               </button>
             )}
           </div>
+        )}
 
-          <nav className="mt-6 space-y-1">
-            {scenario.tasks.map((t, i) => {
-              const isDone = completed.includes(t.id);
-              const active = activeTaskId === t.id;
-              return (
-                <Link
-                  key={t.id}
-                  to="/modules/$slug/$taskId"
-                  params={{ slug: scenario.slug, taskId: t.id }}
-                  className={cn(
-                    "flex items-start gap-3 rounded-md border border-transparent px-3 py-2.5 text-sm transition",
-                    active
-                      ? "border-accent/40 bg-accent/10 text-foreground"
-                      : "text-muted-foreground hover:bg-surface hover:text-foreground",
-                  )}
-                >
-                  {isDone ? (
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                  ) : (
-                    <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground/50" />
-                  )}
-                  <span className="flex-1">
-                    <span className="mr-2 font-mono text-[11px] text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {t.title}
-                  </span>
-                </Link>
-              );
-            })}
-          </nav>
-        </aside>
-
-        {/* Content */}
         <div className="min-w-0">
           <Outlet />
         </div>

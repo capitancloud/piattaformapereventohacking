@@ -32,6 +32,7 @@ function Home() {
   const { completedFor, resetScenario } = useProgress();
   const available = scenarios.filter((s) => s.status === "available");
   const comingSoon = TOTAL_PLANNED - available.length;
+  const totalMicroTasks = scenarios.reduce((sum, s) => sum + s.tasks.length, 0);
 
   return (
     <div className="grain min-h-screen bg-background">
@@ -68,10 +69,16 @@ function Home() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Hacking Lab è una piattaforma di simulazione: ogni scenario ricrea un ambiente
+            Hacking Lab è una piattaforma di simulazione completa: ogni scenario ricrea un ambiente
             vulnerabile e ti guida, passo per passo, ad attaccarlo e a capirne le difese. Zero
             setup, nessun rischio, tutto nel browser.
           </p>
+
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-3 py-1.5 text-xs text-accent backdrop-blur">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            <span className="font-medium">Realizzata in esclusiva da Ethical Hacker Italiani</span>
+          </div>
+
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/modules/$slug"
@@ -90,9 +97,9 @@ function Home() {
           </div>
 
           <div className="mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-border/60 pt-8">
-            <Metric value={`${available.length}`} label="Scenari attivi" />
-            <Metric value={`${TOTAL_PLANNED}`} label="Scenari previsti" />
-            <Metric value="100%" label="Ambiente simulato" />
+            <Metric value={`${available.length}`} label="Scenari completi" />
+            <Metric value={`${totalMicroTasks}`} label="Micro-task interattivi" />
+            <Metric value="Italia" label="Made by Ethical Hacker Italiani" />
           </div>
         </div>
 
@@ -115,12 +122,12 @@ function Home() {
               Catalogo scenari
             </p>
             <h2 className="font-display text-3xl text-foreground md:text-4xl">
-              20 scenari, in arrivo uno per volta
+              Piattaforma completa: 20 scenari, 200 micro-task
             </h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Il primo scenario è già disponibile. Gli altri {comingSoon} verranno pubblicati a mano
-            a mano.
+            Tutti gli scenari sono disponibili e pronti da esplorare. Ogni percorso è pensato e
+            realizzato in esclusiva da Ethical Hacker Italiani.
           </p>
         </div>
 
@@ -273,22 +280,22 @@ function Home() {
             );
           })}
 
-          {/* Coming soon card */}
-          <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-border/60 bg-surface/30 p-7">
+          {/* Complete platform card */}
+          <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-primary/20 to-accent/10 p-7">
             <div className="mb-6 flex items-center justify-between">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Prossimi {comingSoon}
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                Piattaforma completa
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                <Lock className="h-2.5 w-2.5" /> In arrivo
+              <span className="inline-flex items-center gap-1 rounded-full border border-success/40 bg-success/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-success">
+                <ShieldCheck className="h-2.5 w-2.5" /> Disponibile
               </span>
             </div>
 
-            <h3 className="mb-2 font-display text-3xl text-foreground/60">Altri scenari in arrivo</h3>
+            <h3 className="mb-2 font-display text-3xl text-foreground">200 micro-task ti aspettano</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Web (XSS, IDOR, path traversal), reverse shell, reverse engineering, privilege
-              escalation, exploit di rete, difesa perimetrale e molto altro. Un nuovo scenario ogni
-              volta che aggiungiamo un tassello.
+              Tutti gli scenari sono già pubblicati: networking, Linux, Python, PowerShell, analisi
+              del traffico, sicurezza dei sistemi, scansione, enumerazione, vulnerability assessment,
+              exploitation, web exploitation, post-exploitation, privilege escalation e molto altro.
             </p>
           </div>
         </div>
@@ -326,8 +333,9 @@ function Home() {
       </section>
 
       <footer className="mx-auto max-w-6xl px-6 py-10 text-xs text-muted-foreground">
-        Hacking Lab · Piattaforma di simulazione a scopo formativo. Ambiente completamente
-        simulato: nessun sistema reale viene contattato.
+        Hacking Lab · Piattaforma di simulazione a scopo formativo, realizzata in esclusiva da
+        Ethical Hacker Italiani. Ambiente completamente simulato: nessun sistema reale viene
+        contattato.
       </footer>
     </div>
   );

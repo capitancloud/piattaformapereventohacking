@@ -11,8 +11,9 @@ import { cloudSecurityScenario } from "./cloud-security";
 import { informationGatheringScenario } from "./information-gathering";
 import { nmapScanningScenario } from "./nmap-scanning";
 import { enumerationScenario } from "./enumeration";
+import { vulnAssessmentScenario } from "./vuln-assessment";
 
-export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario, enumerationScenario];
+export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario, enumerationScenario, vulnAssessmentScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

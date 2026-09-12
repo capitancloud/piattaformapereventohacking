@@ -1,4 +1,6 @@
-import type { Scenario } from "../types";
+import sys
+
+content = r'''import type { Scenario } from "../types";
 import Task01Ip from "./tasks/Task01Ip";
 import Task02Subnet from "./tasks/Task02Subnet";
 import Task03Mac from "./tasks/Task03Mac";
@@ -157,4 +159,7 @@ export const networkingScenario: Scenario = {
       Simulation: Task10Quiz,
     },
   ],
-};
+};'''
+
+with open('src/lib/scenarios/networking/index.ts', 'w', encoding='utf-8') as f:
+    f.write(content)

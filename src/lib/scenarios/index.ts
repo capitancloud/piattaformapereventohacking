@@ -10,8 +10,9 @@ import { windowsSecurityScenario } from "./windows-security";
 import { cloudSecurityScenario } from "./cloud-security";
 import { informationGatheringScenario } from "./information-gathering";
 import { nmapScanningScenario } from "./nmap-scanning";
+import { enumerationScenario } from "./enumeration";
 
-export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario];
+export const scenarios: Scenario[] = [networkingScenario, linuxScenario, bashScenario, pythonScenario, powershellScenario, trafficScenario, linuxSecurityScenario, windowsSecurityScenario, cloudSecurityScenario, informationGatheringScenario, nmapScanningScenario, enumerationScenario];
 
 export function getScenario(slug: string): Scenario | undefined {
   return scenarios.find((s) => s.slug === slug);

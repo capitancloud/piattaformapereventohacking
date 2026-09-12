@@ -13,7 +13,7 @@ import Task10Triage from "./tasks/Task10Triage";
 export const nmapScanningScenario: Scenario = {
   id: "nmap-scanning",
   slug: "nmap-scanning",
-  title: "Scansione con Nmap",
+  title: "Scansione della Rete",
   subtitle: "Verificare cosa è raggiungibile, con quale rumore e con quale livello di certezza",
   intro:
     "Dopo la raccolta di informazioni arriva il momento in cui si smette di osservare da lontano e si comincia a bussare. La scansione è la fase in cui un pacchetto parte davvero verso i sistemi del cliente: per questo va calibrata, motivata e documentata. In questo scenario lavorerai su una rete simulata con Nmap, lo strumento che quasi tutti i professionisti usano per capire quali host sono attivi e quali servizi rispondono. Costruirai comandi pezzo per pezzo, imparerai a leggere gli stati delle porte senza forzarne il significato, sceglierai velocità e script in base alla fragilità del bersaglio e chiuderai con un triage ordinato. Nessun pacchetto lascia il tuo browser: tutti gli output sono ricostruzioni realistiche.",
